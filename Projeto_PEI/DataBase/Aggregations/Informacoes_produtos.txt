@@ -1,0 +1,88 @@
+Primeio organizamos as categorias nas subcategorias
+db.SubCategory.aggregate([
+  {
+    $lookup:
+{
+  from: "category",
+  localField: "category_id",
+  foreignField: "id",
+  as: "category_info",
+},
+  },
+  {
+    $unwind:{
+  path: "$category_info",
+},
+},
+{$out: "sub_category",
+  },
+])
+
+De seguida agregamos as sub_categorias nas sub_category_product
+db.sub_category_product.aggregate([
+  {
+    $lookup:
+      {
+        from: "sub_category",
+        localField: "id",
+        foreignField: "prdoct_id",
+        as: "sub_category_info",
+      },
+  },
+  {
+    $unwind:
+   
+      {
+        path: "$sub_category_info",
+      },
+  },
+{
+ $project: {
+            _id: 1,
+            product_id: 1,
+            sub_category_name: "$sub_category_info.name",
+            sub_category_category: "$sub_category_info.category"
+        }
+  {
+    $out:
+      "sub_category_product",
+  },
+])
+
+Por último agregamos as sub_category_product nos respetivos product
+db.product.aggregate(
+[
+  {
+    $lookup:
+      {
+        from: "sub_category_product",
+        localField: "id",
+        foreignField: "product_id",
+        as: "sub_categories",
+      },
+  },
+  {
+    $project: {
+      "5g": 1,
+      battery_capacity: 1,
+      brand: 1,
+      _id: 1,
+      fast_charging: 1,
+      id: 1,
+      internal_memory: 1,
+      list_price: 1,
+      os: 1,
+      model: 1,
+      primary_camera: 1,
+      processor_brand: 1,
+      ram_capacity: 1,
+      screen_size: 1,
+      "sub_categories.sub_category.category.name": 1,
+      "sub_categories.sub_category.name": 1,
+    },
+  },
+  {
+    $out:
+      "product",
+  },
+])

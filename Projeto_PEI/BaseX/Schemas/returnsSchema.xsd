@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+  <xs:complexType name="productType">
+    <xs:sequence>
+      <xs:element name="product_code" type="xs:string"/>
+      <xs:element name="list_price" type="xs:decimal"/>
+      <xs:element name="brand" type="xs:string"/>
+      <xs:element name="model" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="saleType">
+    <xs:sequence>
+      <xs:element name="date" type="xs:dateTime"/>
+      <xs:element name="customer_id" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="documentReturnType">
+    <xs:sequence>
+      <xs:element name="invoice_id" type="xs:string"/>
+      <xs:element name="return_date" type="xs:dateTime"/>
+      <xs:element name="daysToReturn" type="xs:integer"/>
+      <xs:element name="earlyReturn" type="xs:boolean"/>
+      <xs:element name="products" minOccurs="0" maxOccurs="unbounded">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="product" type="productType"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="associatedSales" minOccurs="0" maxOccurs="unbounded">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="sale" type="saleType"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="returnsType">
+    <xs:sequence>
+      <xs:element name="documentReturn" type="documentReturnType" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:element name="ReturnsReport">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="NIF" type="xs:string"/>
+        <xs:element name="Nome" type="xs:string"/>
+        <xs:element name="Morada" type="xs:string"/>
+        <xs:element name="Ano_Fiscal" type="xs:integer"/>
+        <xs:element name="Mes" type="xs:integer"/>
+        <xs:element name="number_distinct_products" type="xs:integer"/>
+        <xs:element name="returns" type="returnsType"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+</xs:schema>

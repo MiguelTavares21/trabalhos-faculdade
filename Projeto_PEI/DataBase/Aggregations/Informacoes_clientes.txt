@@ -1,0 +1,304 @@
+Inicialmente guardamos a morada inteira na coleção address:
+Prieiro juntamos todas as citys nos respetivos countrys:
+db.city.aggregate([
+  {
+    $lookup: {
+  from: "country",
+  localField: "country_id",
+  foreignField: "country_id",
+  as: "info_country",
+},
+  },
+$unwind: {
+  path: "$info_country",
+},
+$project:{
+_id: 1,
+  city_id: 1,
+  city: 1,
+  country: "$info_country.country",
+  arrayIndex: 1,
+},
+])
+
+De seguida juntamos as cidades que já tem o país associado ao address:
+db.address.aggregate([
+    {
+        $lookup: {
+            from: "city",
+            localField: "city_id",
+            foreignField: "city_id",
+            as: "address_info"
+        }
+    },
+    {
+        $unwind: "$address_info"
+    },
+    {
+        $project: {
+            _id: 1,
+            address_id: 1,
+            address: 1,
+            address2: 1,
+            district: 1,
+            city_id: "$address_info.city_id",
+            postal_code: "$address_info.postal_code",
+            city: "$address_info.city",
+            country: "$address_info.country"
+        }
+    },
+{
+        $out: "$address"
+    }
+]);
+
+db.customer.aggregate([
+  {
+    $addFields:
+      {
+        clientType: {
+          $switch: {
+            branches: [
+              {
+                case: {
+                  $and: [
+                    {
+                      $gte: [
+                        "$create_date",
+                        new Date(
+                          new Date().setFullYear(
+                            new Date().getFullYear() -
+                              1
+                          )
+                        ),
+                      ],
+                    },
+                    {
+                      $lt: [
+                        "$create_date",
+                        new Date(),
+                      ],
+                    },
+                  ],
+                },
+                then: "new",
+              },
+              {
+                case: {
+                  $gt: [
+                    "$create_date",
+                    {
+                      $toDate: {
+                        $subtract: [
+                          new Date(),
+                          5 *
+                            365 *
+                            24 *
+                            60 *
+                            60 *
+                            1000,
+                        ],
+                      },
+                    },
+                  ],
+                },
+                then: "premium",
+              },
+            ],
+            default: "regular",
+          },
+        },
+      },
+  },
+  {
+    $out:
+      "customer",
+  },
+])
+
+Contar o numero de vendas nos ultimos 3 anos por cliente
+db.sales_header.aggregate(
+[
+  {
+    $match:
+      /**
+       * query: The query in MQL.
+       */
+      {
+        date: {
+          $gte: ISODate("2021-01-22T05:45:38Z"),
+          $lt: ISODate("2024-01-22T05:45:38Z"),
+        },
+      },
+  },
+  {
+    $group:
+      /**
+       * _id: The id of the group.
+       * fieldN: The first field name.
+       */
+      {
+        _id: "$customer_id",
+        count_purchase: {
+          $sum: 1,
+        },
+      },
+  },
+  {
+    $out:
+      /**
+       * Provide the name of the output collection.
+       */
+      "clientPurchases",
+  },
+])
+
+Adicionar esse numero a customer
+db.customer.aggregate(
+[
+  {
+    $lookup:
+      /**
+       * from: The target collection.
+       * localField: The local join field.
+       * foreignField: The target join field.
+       * as: The name for the results.
+       * pipeline: Optional pipeline to run on the foreign collection.
+       * let: Optional variables to use in the pipeline field stages.
+       */
+      {
+        from: "clientPurchases",
+        localField: "id",
+        foreignField: "_id",
+        as: "num_compras",
+      },
+  },
+  {
+    $set:
+      /**
+       * field: The field name
+       * expression: The expression.
+       */
+      {
+        num_compras:
+          "$num_compras.count_purchase",
+      },
+  },
+  {
+    $unwind:
+      /**
+       * path: Path to the array field.
+       * includeArrayIndex: Optional name for index.
+       * preserveNullAndEmptyArrays: Optional
+       *   toggle to unwind null and empty values.
+       */
+      {
+        path: "$num_compras",
+        preserveNullAndEmptyArrays: true,
+      },
+  },
+  {
+    $project:
+      /**
+       * specifications: The fields to
+       *   include or exclude.
+       */
+      {
+        id: 1,
+        first_name: 1,
+        last_name: 1,
+        email: 1,
+        create_date: 1,
+        gender: 1,
+        birthDate: 1,
+        clientType: 1,
+        address: 1,
+        address2: 1,
+        district: 1,
+        postal_code: 1,
+        city: 1,
+        country: 1,
+        num_compras: 1,
+      },
+  },
+  {
+    $out:
+      /**
+       * Provide the name of the output collection.
+       */
+      "customer",
+  },
+]
+)
+
+De seguida juntamos address que contém cidade e país ao customer
+Desta forma customer fica organizado.
+db.customer.aggregate([
+    {
+        $lookup: {
+            from: "address",
+            localField: "id",
+            foreignField: "id",
+            as: "address_info"
+        }
+    },
+    {
+        $unwind: "$address_info"
+    },
+    {
+        $project: {
+            _id: 1,
+            id: 1,
+            first_name: 1,
+            last_name: 1,
+            email: 1,
+            create_date: 1,
+            gender: 1,
+            birthDate: 1,
+            clientType: 1,
+            address: "$address_info.address",
+            address2: "$address_info.address2",
+            district: "$address_info.district",
+            postal_code: "$address_info.postal_code",
+            city: "$address_info.city",
+            country: "$address_info.country",
+        }
+    },
+{
+$out: "$address"
+}
+]);
+Foi assim que organizamos os clientes inicialmente, exemplo:
+
+_id
+659e9b61f6282a13e7a6c73c
+id
+13
+first_name
+"KAREN"
+last_name
+"JACKSON"
+email
+"KAREN.JACKSON@sakilacustomer.org"
+create_date
+"2021-02-14 22:04:36.000"
+gender
+"F"
+birthDate
+1989-05-28T00:00:00.000+00:00
+clientType
+"regular"
+address
+"270 Amroha Parkway"
+address2
+null
+district
+" "
+postal_code
+29610
+city
+"Osmaniye"
+country
+"Turkey"
+num_compras
+869

@@ -1,0 +1,55 @@
+Na parte das vendas agregamos as sales lines nas sales headres, tivemos de usar um índice para a pesquisa ser mais eficiente
+primeiro criamos o mesmo:
+db.sales_header.createIndex({"invoice_id":1})
+db.sales_lines.createIndex({"invoice_id":1})
+depois executamos a seguinte agrregation:
+db.sales_header.aggregate([
+{
+$lookup:{
+from:"sales_lines",
+localField:"invoice_id",
+foreignField:"invoice_id",
+as:"sales_lines"
+}
+},
+$addFields:{
+sales_lines:{
+$map:{
+input:"$sales_lines",
+as:"line",
+in:{
+total_with_vat:"$$line.total_with_vat",
+quantity:"$$line.quantity",
+product_id:"$$line.product_id",
+invoice_id:"$$line.invoice_id"
+}
+}
+}
+}
+},
+{$merge:"sales_header"
+}
+]);
+desta forma organizamos de forma inicial as sales
+
+De seguida formamos uma sample com 30000 documentos onde adicionamos o respetivo customer.
+
+db.sales_header.aggregate(
+[
+  {
+    $lookup: {
+      from: "customer",
+      localField: "customer_id",
+      foreignField: "id",
+      as: "customer",
+    },
+  },
+  {
+    $out:
+      /**
+       * Provide the name of the output collection.
+       */
+      "salesSampleCollection",
+  },
+]
+)

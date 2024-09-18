@@ -1,0 +1,61 @@
+Criou-se uma agregação para recolher os dados relevantes às devoluções.
+db.Returns.aggregate([
+  {
+    $lookup: {
+      from: "Product",
+      localField: "product_id",
+      foreignField: "id",
+      as: "returnedProducts",
+    },
+  },
+  {
+    $lookup: {
+      from: "SalesHeader",
+      localField: "invoice_id",
+      foreignField: "invoice_id",
+      as: "sales_data",
+    },
+  },
+  {
+    $unwind: "$sales_data",
+  },
+  {
+    $addFields: {
+      early_return: {
+        $cond: {
+          if: {
+            $lte: [
+              "$date",
+              {
+                $add: [
+                  "$sale_data.date",
+                  3 * 24 * 60 * 60 * 1000,
+                ], // 3 days in milliseconds
+              },
+            ],
+          },
+          then: true,
+          else: false,
+        },
+      },
+      days_to_return: {
+        $divide: [
+          {
+            $subtract: [
+              "$date",
+              "$sale_data.date",
+            ],
+          },
+          24 * 60 * 60 * 1000, // Convert milliseconds to days
+        ],
+      },
+    },
+  },
+  {
+    $out:
+      /**
+       * Provide the name of the output collection.
+       */
+      "Returns",
+  },
+])

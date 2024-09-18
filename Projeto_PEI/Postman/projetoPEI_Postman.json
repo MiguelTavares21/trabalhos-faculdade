@@ -1,0 +1,76 @@
+{
+	"info": {
+		"_postman_id": "4f0467e7-6e04-47f5-b462-1ddfac03ae00",
+		"name": "BaseX",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "31016928",
+		"_collection_link": "https://martian-flare-232951.postman.co/workspace/My-Workspace~b51318e4-2e68-4c55-8485-ee67525ee427/collection/31016928-4f0467e7-6e04-47f5-b462-1ddfac03ae00?action=share&source=collection_link&creator=31016928"
+	},
+	"item": [
+		{
+			"name": "getSales",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:8080/getSales?ano=2022&mes=08",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"getSales"
+					],
+					"query": [
+						{
+							"key": "ano",
+							"value": "2022"
+						},
+						{
+							"key": "mes",
+							"value": "08"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getReturns",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/getReturns?ano=2022&mes=05",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"getReturns"
+					],
+					"query": [
+						{
+							"key": "ano",
+							"value": "2022"
+						},
+						{
+							"key": "mes",
+							"value": "05"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

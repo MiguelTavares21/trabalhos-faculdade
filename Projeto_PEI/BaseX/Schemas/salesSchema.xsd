@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+  <xs:complexType name="addressType">
+    <xs:sequence>
+      <xs:element name="postal_Code" type="xs:string"/>
+      <xs:element name="city" type="xs:string"/>
+      <xs:element name="country" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="customerInfoType">
+    <xs:sequence>
+      <xs:element name="first_Name" type="xs:string"/>
+      <xs:element name="last_Name" type="xs:string"/>
+      <xs:element name="customer_email" type="xs:string"/>
+      <xs:element name="address" type="addressType"/>
+      <xs:element name="customer_Type" type="xs:string"/>
+      <xs:element name="customer_Purchases" type="xs:integer"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="subcategoriesType">
+    <xs:sequence>
+      <xs:element name="subcategory" type="subcategoryType"/>
+    </xs:sequence>
+  </xs:complexType>
+  
+    <xs:complexType name="subcategoryType">
+    <xs:sequence>
+      <xs:element name="name" type="xs:string"/>
+      <xs:element name="category_name" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="productsType">
+    <xs:sequence>
+      <xs:element name="product" type="productType"/>
+    </xs:sequence>
+  </xs:complexType>
+  
+    <xs:complexType name="productType">
+    <xs:sequence>
+      <xs:element name="product_code" type="xs:integer"/>
+      <xs:element name="list_price" type="xs:decimal"/>
+      <xs:element name="brand" type="xs:string"/>
+      <xs:element name="model" type="xs:string"/>
+      <xs:element name="subcategories" type="subcategoriesType"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="saleLinesType">
+    <xs:sequence>
+      <xs:element name="sale_line" type="saleLineType"/>
+    </xs:sequence>
+  </xs:complexType>
+  
+    <xs:complexType name="saleLineType">
+    <xs:sequence>
+      <xs:element name="number" type="xs:string"/>
+      <xs:element name="product_code" type="xs:string"/>
+      <xs:element name="total_with_vat" type="xs:string"/>
+      <xs:element name="quantity" type="xs:integer"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="salesInfoType">
+    <xs:sequence>
+      <xs:element name="sale">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="number_distinct_products" type="xs:integer"/>
+            <xs:element name="sale_id" type="xs:string"/>
+            <xs:element name="sale_date" type="xs:dateTime"/>
+            <xs:element name="total_sale_spent" type="xs:decimal"/>
+            <xs:element name="customerInfo" type="customerInfoType"/>
+            <xs:element name="productsInfo" type="productsType"/>
+            <xs:element name="sale_lines" type="saleLinesType"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:element name="SalesReport">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="NIF" type="xs:string"/>
+        <xs:element name="Nome" type="xs:string"/>
+        <xs:element name="Morada" type="xs:string"/>
+        <xs:element name="Ano_Fiscal" type="xs:integer"/>
+        <xs:element name="Mes" type="xs:integer"/>
+        <xs:element name="number_of_distinct_products" type="xs:integer"/>
+        <xs:element name="number_of_sales" type="xs:integer"/>
+        <xs:element name="total_sales_value" type="xs:decimal"/>
+        <xs:element name="number_of_distinct_customers" type="xs:integer"/>
+        <xs:element name="salesInfo" type="salesInfoType"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+</xs:schema>

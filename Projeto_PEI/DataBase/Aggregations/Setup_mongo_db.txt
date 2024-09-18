@@ -1,0 +1,8 @@
+criar a base de dados
+use Projeto;
+
+Depois criamos coleções para armazenar o conteúdo dos ficheiros CSV, algumas destas coleções serão eliminadas após o seu conteúdo ser transferido para as coleções finais
+db.createCollection("address"); db.createCollection("category"); db.createCollection("city"); db.createCollection("country"); db.createCollection("customer"); db.createCollection("product"); db.createCollection("returns"); db.createCollection("sales_header"); db.createCollection("sales_lines"); db.createCollection("sub_category"); 
+db.createCollection("sub_category_roduct");
+
+ É necessário importar os ficheiros .csv para cada uma das respetivas coleções, através do MongoDb Compass. 
