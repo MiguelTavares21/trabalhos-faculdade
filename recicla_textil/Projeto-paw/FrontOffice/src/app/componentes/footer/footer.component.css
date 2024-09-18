@@ -1,0 +1,14 @@
+footer {
+    background-color: #ffad99;
+    text-align: center;
+    color: #fff;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+  }
+
+  @media only screen and (max-width: 600px) {
+    footer {
+        padding: 0.2%;
+      }
+  }

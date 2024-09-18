@@ -1,0 +1,145 @@
+.background {
+    background-color: #faf3e0;
+    margin: 0;
+    padding: 3%;
+    padding-top: 1%;
+    min-height: 100%;
+}
+
+.form-container {
+    max-width: 650px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.form-container h2 {
+    text-align: center;
+    padding-bottom: 20px;
+}
+
+.form-container div {
+    padding-bottom: 15px;
+}
+
+.form-container label {
+    display: block;
+    font-weight: bold;
+    padding-bottom: 5px;
+}
+
+.form-container span {
+    display: block;
+    font-size: 1.2em;
+    padding-bottom: 10px;
+}
+
+.form-container input[type="text"],
+.form-container input[type="email"],
+.form-container input[type="password"],
+.form-container input[type="tel"],
+.form-container input[type="file"] {
+    width: 100%;
+    padding: 8px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.form-container .preview-image {
+    display: block;
+    margin: 0 auto 15px;
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.form-container .button-group {
+    display: flex;
+    justify-content: space-between;
+}
+
+.form-container button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    background-color: #ffad99;
+    color: white;
+    font-size: 1em;
+    cursor: pointer;
+}
+
+.form-container button.back {
+    background-color: #6c757d;
+}
+
+.form-container .non-editable {
+    font-weight: lighter;
+    font-size: 1.3em;
+}
+
+.form-container .info-line {
+    display: flex;
+    justify-content: space-between;
+}
+
+.form-container .info-lineA {
+    display: block;
+    justify-content: space-between;
+}
+
+.form-container .info-item {
+    flex: 1;
+    padding: 0 10px;
+    text-align: center;
+}
+
+.form-container .info-item label {
+    display: inline-block;
+    padding-bottom: 5px;
+}
+
+.form-container .info-item span {
+    display: inline-block;
+}
+
+@media (max-width: 768px) {
+    .form-container {
+        max-width: 90%;
+        padding: 10px;
+    }
+
+    .form-container .button-group {
+        flex-direction: column;
+    }
+
+    .form-container .button-group button {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+
+    .form-container .info-line {
+        flex-direction: column;
+    }
+
+    .form-container .info-item {
+        padding: 10px 0;
+    }
+}
+
+@media (max-width: 480px) {
+    .form-container input[type="text"],
+    .form-container input[type="email"],
+    .form-container input[type="password"],
+    .form-container input[type="tel"],
+    .form-container input[type="file"] {
+        width: 100%;
+    }
+
+    .form-container .info-item {
+        padding: 5px 0;
+    }
+}

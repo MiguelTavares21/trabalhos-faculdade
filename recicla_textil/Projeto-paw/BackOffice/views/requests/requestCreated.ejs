@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Backoffice</title>
+    <link rel="stylesheet" href="/stylesheets/style.css" />
+    <link rel="stylesheet" href="/stylesheets/created_style.css">
+</head>
+<body>
+    <h2>Pedido Criado</h2>
+    <div class="container">
+        <h3>Doador associado:</h3>
+        <div class="informacao">
+            <span class="label">Nome:</span>
+            <span class="value"><%= doador.nome %></span>
+        </div>
+        <div class="informacao">
+            <span class="label">Apelido:</span>
+            <span class="value"><%= doador.apelido %></span>
+        </div>
+        <div class="informacao">
+            <span class="label">Contacto:</span>
+            <span class="value"><%= doador.contacto %></span>
+        </div>
+        <div class="informacao">
+            <span class="label">Email:</span>
+            <span class="value"><%= doador.email %></span>
+        </div>
+        <div class="informacao">
+            <span class="label">NIF:</span>
+            <span class="value"><%= doador.nif %></span>
+        </div>
+        <div class="informacao">
+            <span class="label">Morada:</span>
+            <span class="value"><%= doador.morada %></span>
+        </div>
+        <h3>Pedido de recolha:</h3>
+        <div class="informacao">
+            <span class="label">Entidade:</span>
+            <span class="value"><%= request.entidade %></span>
+        </div>
+        <div class="informacao">
+            <span class="label">Quilos de roupa:</span>
+            <span class="value"><%= request.kilos %></span>
+        </div>
+        <div class="informacao">
+            <span class="label">Estado da roupa:</span>
+            <span class="value">
+                <%= request.estadoRoupa %>
+            </span>
+        </div>
+        <div class="informacao">
+            <span class="label">Pontos:</span>
+            <span class="value"><%= request.pontos %></span>
+        </div>
+        <div class="informacao">
+            <span class="label">Peças de roupa de criança:</span>
+            <span class="value"><%= request.pecasCrianca %></span>
+        </div>
+        <div class="informacao">
+            <span class="label">Peças de roupa de adulto:</span>
+            <span class="value"><%= request.pecasAdulto %></span>
+        </div>
+        <div class="informacao">
+            <span class="label">Peças de roupa de adolescente:</span>
+            <span class="value"><%= request.pecasAdolescente %></span>
+        </div>
+        <div class="informacao">
+            <span class="label">Peças de roupa interior:</span>
+            <span class="value"><%= request.pecasTipoInterior %></span>
+        </div>
+        <div class="informacao">
+            <span class="label">Peças de roupa inferior:</span>
+            <span class="value"><%= request.pecasTipoInferior %></span>
+        </div>
+        <div class="informacao">
+            <span class="label">Peças de roupa tronco:</span>
+            <span class="value"><%= request.pecasTipoTronco %></span>
+        </div>
+        <div class="informacao">
+            <span class="label">Calçado:</span>
+            <span class="value"><%= request.pecasTipoCalcado %></span>
+        </div>
+        <div class="informacao">
+            <span class="label">Fotos:</span>
+            <ul>
+                <% request.fotos.forEach(function(foto) { %>
+                    <li>
+                        <img src="/<%= foto %>" alt="Foto" class="foto-adicional">
+                    </li>
+                <% }); %>
+            </ul>
+        </div>
+    </div>
+
+    <a href="/" class="link">Voltar ao Menu Principal</a>
+</body>
+</html>

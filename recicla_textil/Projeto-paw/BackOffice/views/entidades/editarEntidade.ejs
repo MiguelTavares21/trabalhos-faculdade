@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editar Entidade Beneficiadora</title>
+    <link rel="stylesheet" href="/stylesheets/editar_style.css">
+    <link rel="stylesheet" href="/stylesheets/popUp_style.css">
+</head>
+<body>
+    <h2>Editar Entidade Beneficiadora</h2>
+    <div class="container">
+        <form action="/users/editar_entidade/<%= entidade._id %>" method="POST" enctype="multipart/form-data">
+            <div class="informacao">
+                <label for="nome" class="label">Nome:</label>
+                <input type="text" id="nome" name="nome" class="value" value="<%= entidade.nome %>" required>
+            </div>
+            <div class="informacao">
+                <label for="descricao" class="label">Descrição:</label>
+                <input type="text" id="descricao" name="descricao" class="value" value="<%= entidade.descricao %>" required>
+            </div>
+            <div class="informacao">
+                <label for="email" class="label">Email:</label>
+                <input type="email" id="email" name="email" class="value" value="<%= entidade.email %>" required>
+            </div>
+            <div class="informacao">
+                <label for="contacto" class="label">Contacto:</label>
+                <input type="text" id="contacto" name="contacto" class="value" value="<%= entidade.contacto %>" required>
+            </div>
+            <div class="informacao">
+                <label for="morada" class="label">Morada:</label>
+                <input type="text" id="morada" name="morada" class="value" value="<%= entidade.morada %>" required>
+            </div>
+            <div class="informacao">
+                <span class="label">Nova Foto de Perfil:</span>
+                <input type="file" id="novaFotoPerfil" name="novaFotoPerfil" accept="image/*" onchange="mostrarNovaFotoPerfil(event)">
+                <h3>Foto de perfil:</h3>
+                <img src="/<%= entidade.fotoPerfil %>" alt="Foto de Perfil" class="foto-perfil" id="fotoPerfil">
+            </div>
+
+            <div class="informacao">
+                <span class="label">Outras Fotos:</span>
+                <ul id="outrasFotos">
+                    <% entidade.fotos.forEach(function(foto, index) { %>
+                    <li>
+                        <img src="/<%= foto %>" alt="Foto" class="foto-adicional">
+                        <button onclick="removerFoto(event)" data-foto-id="<%= foto %>">Remover</button>
+                    </li>
+                    <% }); %>
+                </ul>
+            </div>
+            <input type="hidden" name="fotosRemovidas" id="fotosRemovidas">
+
+            <span class="label">Adicionar Fotos:</span>
+            <input type="file" id="fotos" name="fotos" accept="image/*" multiple>
+            <div id="imagePreviews"></div>
+
+            <button type="button" class="button" onclick="confirmEdit()">Guardar Alterações</button>
+            <a href="/" class="link">Voltar ao Menu Principal</a>
+        </form>
+    </div>
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <p>Tem a certeza que deseja guardar as alterações?</p>
+            <div class="modal-buttons">
+                <button id="confirmButton">Sim</button>
+                <button id="cancelButton">Cancelar</button>
+            </div>
+        </div>
+    </div>
+    <script src="/javascripts/editar.js"></script>
+    <script src="/javascripts/imagens.js"></script>
+</body>
+</html>

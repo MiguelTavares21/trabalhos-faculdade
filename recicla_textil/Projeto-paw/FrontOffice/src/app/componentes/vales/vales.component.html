@@ -1,0 +1,38 @@
+<app-header-user></app-header-user>
+
+<div class="background">
+    <div class="search-container">
+        <input type="text" placeholder="Pesquisar vales..." [(ngModel)]="searchTerm" (input)="filterVales()">
+    </div>
+
+    <div class="container">
+        <div *ngFor="let vale of filteredVales" class="vale-box">
+            <div class="preview-image-container">
+                <img class="preview-image" [src]="getImage(vale)" alt="Foto de Perfil">
+            </div>
+            <p class="truncate">Empresa: {{vale.empresa}}</p>
+            <p class="truncate">Descrição: {{vale.descricao}}</p>
+            <p class="truncate">Custo: {{vale.custoPontos}} pontos</p>
+            <button class="detailsButton" (click)="abrirModalDetalhes(vale)">Detalhes</button>
+        </div>
+    </div>
+</div>
+<div class="modal" *ngIf="modalVisible">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">Detalhes do Vale</h3>
+                <button type="button" class="btn-close" (click)="fecharModal()">×</button>
+            </div>
+            <div class="modal-body" *ngIf="selectedVale">
+                <img class="preview-image-details" [src]="getImage(selectedVale)" alt="Foto de Perfil">
+                <p>Empresa: {{selectedVale.empresa}}</p>
+                <p class="descricao">Descrição: {{selectedVale.descricao}}</p>
+                <p>Custo: {{selectedVale.custoPontos}} pontos</p>
+            </div>
+            <div class="modal-footer">
+                <button class="resgatarButton" (click)="resgatarVale(selectedVale._id)">Resgatar</button>
+            </div>
+        </div>
+    </div>
+</div>

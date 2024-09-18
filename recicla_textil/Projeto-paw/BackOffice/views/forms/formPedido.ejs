@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Criar pedido de recolha</title>
+    <link rel='stylesheet' href='/stylesheets/style.css' /> 
+    <link rel="stylesheet" href="/stylesheets/forms_style.css">
+    <link rel="stylesheet" href="/stylesheets/popUp_style.css">
+</head>
+<body>
+    <h2>Criar pedido de recolha</h2>
+    <form action="/requests/criarPedidoRecolha" method="post" id="formPedido"  enctype="multipart/form-data">
+        <div class="form-group">
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+        </div>
+        <div class="form-group">
+            <label for="">Nº de peças por faixa etária:</label>
+            <br>
+            <label for="pecasCrianca" style="font-size: 84.4%;">Criança</label>
+            <input type="text" id="pecasCrianca" name="pecasCrianca" required title="Introduza um valor numérico positivo">
+            <br>
+            <label for="pecasAdolescente" style="font-size: 84.4%;">Adolescente</label>
+            <input type="text" id="pecasAdolescente" name="pecasAdolescente" required title="Introduza um valor numérico positivo">
+            <br>
+            <label for="pecasAdulto" style="font-size: 84.4%;">Adulto</label>
+            <input type="text" id="pecasAdulto" name="pecasAdulto" required title="Introduza um valor numérico positivo">
+        </div>
+        <div class="form-group">
+            <label for="">Nº de peças por tipo de roupa:</label>
+            <br>
+            <label for="pecasTipoInterior" style="font-size: 84.4%;">Roupa interior</label>
+            <input type="text" id="pecasTipoInterior" name="pecasTipoInterior" required title="Introduza um valor numérico positivo">
+            <br>
+            <label for="pecasTipoTronco" style="font-size: 84.4%;">Roupa tronco</label>
+            <input type="text" id="pecasTipoTronco" name="pecasTipoTronco" required title="Introduza um valor numérico positivo">
+            <br>
+            <label for="pecasTipoInferior" style="font-size: 84.4%;">Calças/Calções</label>
+            <input type="text" id="pecasTipoInferior" name="pecasTipoInferior" required title="Introduza um valor numérico positivo">
+            <br>
+            <label for="pecasTipoCalcado" style="font-size: 84.4%;">Calçado</label>
+            <input type="text" id="pecasTipoCalcado" name="pecasTipoCalcado" required title="Introduza um valor numérico positivo">
+        </div>
+        <div class="form-group">
+            <label for="estadoRoupa">Estado geral da roupa:</label>
+            <select name="estadoRoupa" id="estadoRoupa" required>
+                <option value="Usado">Usado</option>
+                <option value="Semi-Novo">Semi-Novo</option>
+                <option value="Novo">Novo</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="kilos">Quilos totais:</label>
+            <input type="text" id="kilos" name="kilos" required title="Introduza um valor numérico positivo">
+        </div>
+        <div class="form-group">
+            <label for="entidade">Entidade:</label>
+            <select id="entidade" name="entidade" required>
+                <% entities.forEach(function(entity) { %>
+                    <option value="<%= entity.nome %>"><%= entity.nome %></option>
+                <% }); %>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="fotos">Fotos:</label>
+        <input type="file" id="fotos" name="fotos" accept="image/*" multiple required>
+        </div>
+        <div id="imagePreviews"></div>
+
+
+        <div class="form-group">
+            <button type="submit">Criar pedido</button>
+        </div>
+
+            <button type="button" class ="back" onclick="window.history.back()">Voltar</button>
+    </form>
+
+    <script src="../javascripts/pedidoScript.js"></script>
+    <script src="/javascripts/imagens.js"></script>
+</body>
+</html>

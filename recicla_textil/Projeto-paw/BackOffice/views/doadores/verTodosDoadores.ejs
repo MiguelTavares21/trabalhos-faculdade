@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ver Todos os Doadores</title>
+    <link rel="stylesheet" href="/stylesheets/verTodos_style.css">
+</head>
+<body>
+    <h2>Lista de Doadores</h2>
+    <div class="table-container">
+        <table>
+            <thead>
+                <tr>
+                    <th>Foto</th>
+                    <th>Nome</th>
+                    <th>Apelido</th>
+                    <th>Email</th>
+                    <th>NIF</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% doadores.forEach(doador => { %>
+                    <tr>
+                        <td><img src="../<%=doador.fotoPerfil %>" alt="Foto Perfil"></td>
+                        <td><%= doador.nome %></td>
+                        <td><%= doador.apelido %></td>
+                        <td><%= doador.email %></td>
+                        <td><%= doador.nif %></td>
+                        <td>
+                            <a href="/users/editar_doador/<%= doador._id %>" class="edit-button">Editar</a>
+                            
+                            <form id="removeForm_<%= doador._id %>">
+                                <input type="hidden" name="doadorId" value="<%= doador._id %>">
+                                <button type="button" class="remove-button" onclick="confirmRemoveDoador('<%= doador._id %>')">Remover</button>
+                            </form>
+                        </td>
+                    </tr>
+                <% }); %>
+            </tbody>
+        </table>
+    </div>
+    <a href="/">Voltar ao Menu Principal</a>
+
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <p>Tem a certeza que deseja remover este doador?</p>
+            <div class="modal-buttons">
+                <button id="confirmButton">Confirmar</button>
+                <button id="cancelButton">Cancelar</button>
+            </div>
+        </div>
+    </div>
+
+   <script src="/javascripts/editar.js"></script>
+</body>
+</html>

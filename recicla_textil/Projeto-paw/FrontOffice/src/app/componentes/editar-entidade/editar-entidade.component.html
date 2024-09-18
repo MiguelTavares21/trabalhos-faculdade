@@ -1,0 +1,77 @@
+<app-header-entity></app-header-entity>
+<div class="background">
+    <div class="form-container">
+        <h2>Dados da entidade</h2>
+        <form [formGroup]="entidadeForm" (ngSubmit)="onSubmit()" enctype="multipart/form-data" #formDir="ngForm">
+            <div>
+                <label for="fotoPerfil">Foto de Perfil:</label>
+                <img class="preview-image" *ngIf="imageUrl" [src]="imageUrl" alt="Foto de Perfil">
+                <p>Insira aqui a nova foto de perfil:</p>
+                <input type="file" formControlName="fotoPerfil" accept="image/*" (change)="onFileSelected($event)">
+            </div>
+            <div class="info-line">
+                <div class="info-item">
+                    <label for="email">Email:</label>
+                    <br>
+                    <span class="non-editable">{{ entidadeForm.get('email')?.value }}</span>
+                </div>
+                <div class="info-item">
+                    <label for="numPontos">Numero de doações recebidas:</label>
+                    <br>
+                    <span class="non-editable">{{ entidadeForm.get('numeroDoacoes')?.value }}</span>
+                </div>
+                </div>
+            <div>
+                <label for="nome">Nome:</label>
+                <input type="text" formControlName="nome">
+            </div>
+            <div *ngIf="getName().invalid && formDir.submitted" class="validation-error">
+                <p *ngIf="getName().errors?.['required']">O Nome é obrigatório</p>
+            </div>
+            <div>
+                <label for="descricao">Descrição:</label>
+                <input type="text" formControlName="descricao">
+            </div>
+            <div *ngIf="getDescricao().invalid && formDir.submitted" class="validation-error">
+                <p *ngIf="getDescricao().errors?.['required']">A descrição é obrigatória</p>
+            </div>
+            <div>
+                <label for="contacto">Contacto:</label>
+                <input type="tel" formControlName="contacto">
+            </div>
+            <div *ngIf="getContacto().invalid && formDir.submitted" class="validation-error">
+                <p *ngIf="getContacto().errors?.['required']">O contacto é obrigatório</p>
+                <p *ngIf="getContacto().errors?.['pattern']">O contacto deve de conter 9 digitos e começar por 9</p>
+            </div>
+            <div>
+                <label for="morada">Morada:</label>
+                <input type="text" formControlName="morada">
+            </div>
+            <div *ngIf="getMorada().invalid && formDir.submitted" class="validation-error">
+                <p *ngIf="getMorada().errors?.['required']">A morada é obrigatória</p>
+            </div>
+            <div>
+                <label for="outrasFotos">Outras fotos (opcional):</label>
+                <input type="file" id="outrasFotos" name="outrasFotos" accept="image/*" multiple (change)="onMultipleFilesSelected($event)">
+                <div id="imagePreviews">
+                  <div *ngFor="let image of multipleImages; let i = index">
+                    <img [src]="image.path" class="preview-image" alt="Foto adicional">
+                    <button type="button" (click)="removeImage(i)">Remover</button>
+                  </div>
+                </div>
+              </div>              
+            <div>
+                <label for="passwordAtual">Password atual:</label>
+                <input type="password" formControlName="passwordAtual">
+            </div>
+            <div>
+                <label for="passwordNova">Password nova:</label>
+                <input type="password" formControlName="passwordNova">
+            </div>
+            <div class="button-group">
+                <button type="submit">Atualizar Dados</button>
+                <button type="button" class="back" onclick="window.history.back()">Voltar</button>
+            </div>
+        </form>
+    </div>
+</div>

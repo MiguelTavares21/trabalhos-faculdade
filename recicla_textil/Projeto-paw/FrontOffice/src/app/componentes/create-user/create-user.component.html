@@ -1,0 +1,81 @@
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css">
+  <form [formGroup]="doadorForm" (ngSubmit)="onSubmit()" enctype="multipart/form-data" #formDir="ngForm">
+    <div>
+      <label for="nome">Nome:</label>
+      <input type="text" formControlName="nome">
+    </div>
+    <div *ngIf="getName().invalid && formDir.submitted" class="validation-error">
+      <p *ngIf="getName().errors?.['required']">O Nome é obrigatório</p>
+    </div>
+    <div>
+      <label for="apelido">Apelido:</label>
+      <input type="text" formControlName="apelido">
+    </div>
+    <div *ngIf="getApelido().invalid && formDir.submitted" class="validation-error">
+      <p *ngIf="getApelido().errors?.['required']">O Apelido é obrigatório</p>
+    </div>
+    <div>
+      <label for="email">Email:</label>
+      <input type="email" formControlName="email">
+    </div>
+    <div *ngIf="getEmail().invalid && formDir.submitted" class="validation-error">
+      <p *ngIf="getEmail().errors?.['required']">O email é obrigatório</p>
+      <p *ngIf="getEmail().errors?.['email']">Insira um email válido. Deve conter:
+         '&#64;'</p>
+    </div>
+    <div>
+      <label for="password">Password:</label>
+      <div data-mdb-input-init class="input-group mb-4 highlighted-div" id="passLogin">
+        <input type="password" formControlName="password" class="form-control" id="passwordInput" />
+        <span class="input-group-text" (click)="togglePasswordVisibility()">
+          <i class="fas fa-eye" id="togglePasswordIcon"></i>
+        </span>
+      </div>
+    </div>
+    <div *ngIf="getPassword().invalid && formDir.submitted" class="validation-error">
+      <p *ngIf="getPassword().errors?.['required']">A password é obrigatória</p>
+    </div>
+    <div>
+      <label for="nif">NIF:</label>
+      <input type="text" formControlName="nif">
+    </div>
+    <div *ngIf="getNif().invalid && formDir.submitted" class="validation-error">
+      <p *ngIf="getNif().errors?.['required']">O NIF é obrigatório</p>
+      <p *ngIf="getNif().errors?.['pattern']">O NIF deve conter exatamente 9 dígitos numéricos</p>
+    </div>
+    <div>
+      <label for="morada">Morada:</label>
+      <input type="text" formControlName="morada">
+    </div>
+    <div *ngIf="getMorada().invalid && formDir.submitted" class="validation-error">
+      <p *ngIf="getMorada().errors?.['required']">A morada é obrigatória</p>
+    </div>
+    <div>
+      <label for="codigoAngariador">Código de angariador: </label>
+      <input type="text" formControlName="codigoAngariador">
+    </div>
+    <div *ngIf="getCodigoAngariador().invalid && formDir.submitted" class="validation-error">
+      <p *ngIf="getCodigoAngariador().errors?.['required']">O código de angariador é obrigatório</p>
+    </div>
+    <div>
+      <label for="codigoAngariadorConvidado">Código de angariador que o convidou: </label>
+      <input type="text" formControlName="codigoAngariadorConvidado" onkeypress="return event.charCode != 32">
+      <p>(Não é obrigatório introduzir um código de convite)</p>
+    </div>
+    <div>
+      <label for="contacto">Contacto (opcional):</label>
+      <input type="tel" formControlName="contacto">
+    </div>
+    <div *ngIf="getContacto().invalid && formDir.submitted" class="validation-error">
+      <p *ngIf="getContacto().errors?.['pattern']">O contacto deve de conter 9 digitos e começar por 9</p>
+    </div>
+    <div>
+        <label for="fotoPerfil">Foto de Perfil (opcional):</label>
+        <input type="file" formControlName="fotoPerfil" accept="image/*" (change)="onFileSelected($event)">
+        <img class="preview-image" *ngIf="imageUrl" [src]="imageUrl" alt="Foto de Perfil">
+      </div>
+      
+  
+    <button type="submit" >Criar Doador</button>
+    <button type="button" class="back" onclick="window.history.back()">Voltar</button>
+  </form>

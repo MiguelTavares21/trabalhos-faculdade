@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editar Doador</title>
+    <link rel="stylesheet" href="/stylesheets/editar_style.css">
+    <link rel="stylesheet" href="/stylesheets/popUp_style.css">
+</head>
+<body>
+    <h2>Editar Doador</h2>
+    <div class="container">
+        <form enctype="multipart/form-data">
+            <div class="informacao">
+                <label for="nome" class="label">Nome:</label>
+                <input type="text" id="nome" name="nome" class="value" value="<%= doador.nome %>" required>
+            </div>
+            <div class="informacao">
+                <label for="apelido" class="label">Apelido:</label>
+                <input type="text" id="apelido" name="apelido" class="value" value="<%= doador.apelido %>" required>
+            </div>
+            <div class="informacao">
+                <label for="email" class="label">Email:</label>
+                <input type="email" id="email" name="email" class="value" value="<%= doador.email %>" required>
+            </div>
+            <div class="informacao">
+                <label for="nif" class="label">NIF:</label>
+                <input type="text" id="nif" name="nif" class="value" value="<%= doador.nif %>" required pattern="[0-9]{9}" title="O NIF deve conter exatamente 9 dígitos.">
+            </div>
+            <div class="informacao">
+                <label for="morada" class="label">Morada:</label>
+                <input type="text" id="morada" name="morada" class="value" value="<%= doador.morada %>" required>
+            </div>
+            <div class="informacao">
+                <label for="contacto" class="label">Contacto (opcional):</label>
+                <input type="tel" id="contacto" name="contacto" class="value" value="<%= doador.contacto %>" pattern="[9][0-9]{8}" title="O contacto deve começar com o dígito 9 e conter 9 dígitos.">
+            </div>
+            <div class="informacao">
+                <span class="label">Nova Foto de Perfil:</span>
+                <input type="file" id="novafotoPerfil" name="novafotoPerfil" accept="image/*" onchange="mostrarNovaFotoPerfil(event)">
+                <h3>Foto de perfil:</h3>
+                <img src="/<%= doador.fotoPerfil %>" alt="Foto de Perfil" class="foto-perfil" id="fotoPerfil">
+            </div>
+            <button type="button" class="button" onclick="confirmEditDoador('<%= doador._id %>')">Guardar Alterações</button>
+            <a href="/" class="link">Voltar ao Menu Principal</a>
+        </form>
+    </div>
+
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <p>Tem a certeza que deseja guardar as alterações?</p>
+            <div class="modal-buttons">
+                <button id="confirmButton">Sim</button>
+                <button id="cancelButton">Cancelar</button>
+            </div>
+        </div>
+    </div>
+    <script src="/javascripts/editar.js"></script>
+</body>
+</html>

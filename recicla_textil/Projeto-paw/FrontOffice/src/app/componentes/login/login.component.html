@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-alpha1/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/mdb-ui-kit/css/mdb.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css">
+</head>
+
+<body>   
+
+<section class="h-100 gradient-form" style="background-color: #ffcc99;">
+  <div class="container py-5 h-100">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col-xl-10">
+        <div class="card rounded-3 text-black">
+          <div class="row g-0">
+            <div class="col-lg-6">
+              <div class="card-body p-md-5 mx-md-4">
+
+                <div class="text-center">
+                  <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSZQvlDYEMRNhoF0w80YGOrcxgxwn7cYm49Tg&s" 
+                    style="width: 185px;" alt="logo">
+                  <h4 class="mt-1 mb-5 pb-1">Recicla Têxtil</h4>
+                </div>
+
+                <form id="loginForm" (ngSubmit)="onLogin()" [formGroup]="momentForm" #formDir="ngForm">
+                  <p>Email</p>
+                  <div data-mdb-input-init class="form-outline mb-4 highlighted-div">
+                    <input type="email" formControlName="email" class="form-control"
+                      placeholder="Email" />
+                  </div>
+                  <div *ngIf="getEmail().invalid && formDir.submitted" class="validation-error">
+                    <p *ngIf="getEmail().errors?.['required']">O email é obrigatório</p>
+                  </div>
+                
+                  <p>Password</p>
+                  <div data-mdb-input-init class="input-group mb-4 highlighted-div" id="passLogin">
+                    <input type="password" formControlName="password" class="form-control" id="passwordInput" />
+                    <span class="input-group-text" (click)="togglePasswordVisibility()">
+                      <i class="fas fa-eye" id="togglePasswordIcon"></i>
+                    </span>
+                  </div>
+                  <div *ngIf="getPassword().invalid && formDir.submitted" class="validation-error">
+                    <p *ngIf="getPassword().errors?.['required']">A password é obrigatória</p>
+                  </div>
+                
+                  <div class="text-center pt-1 mb-5 pb-1">
+                    <button type="submit" class="btn btn-primary btn-block fa-lg gradient-custom-2 mb-3" style="padding: 5%;">Login</button>
+                  </div>
+                
+                  <div class="d-flex align-items-center justify-content-center pb-4">
+                    <p class="mb-0 me-2">Não tem uma conta?</p>
+                    <button type="button" class="btn btn-outline-danger" (click)="openAccountTypeModal()">Criar nova</button>
+                  </div>
+                </form>
+                
+
+              </div>
+            </div>
+            <div class="col-lg-6 d-flex align-items-center gradient-custom-2">
+              <div class="text-white px-3 py-4 p-md-5 mx-md-4">
+                <h4 class="mb-4">Welcome</h4>
+                <p class="small mb-0">Bem vindo a recicla têxtil, a maior empresa de doações.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div  class="modal" *ngIf="modalVisible">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="createAccountModalLabel">Escolha o tipo de conta</h5>
+        <button type="button" class="btn-close" id="btn-close" data-bs-dismiss="modal" aria-label="Close" (click)="closeAccountTypeModal()"></button>
+      </div>
+      <div class="modal-body">
+        <p>Que tipo de conta gostaria de criar?</p>
+        <button type="button" class="btn btn-primary" (click)="createUserAccount()">Doador</button>
+        <button type="button" class="btn btn-primary" (click)="createEntityAccount()">Entidade</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+</body>
+</html>

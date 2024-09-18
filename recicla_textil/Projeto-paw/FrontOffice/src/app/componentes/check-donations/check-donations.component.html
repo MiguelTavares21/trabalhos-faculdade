@@ -1,0 +1,132 @@
+<div *ngIf="thisRole === 'doador'; else roleEntity">
+<app-header-user></app-header-user>
+</div>
+<ng-template #roleEntity>
+    <app-header-entity></app-header-entity>
+</ng-template>
+<div *ngIf="!donationExistance;else donationExists">
+    <p>Não tem nenhuma doação registada/associada!</p>
+</div>
+<ng-template #donationExists>
+    <div class="container">
+        <div class="left-panel">
+
+            <div class="filters">
+                <label for="filter-id" class="filter-id">Pesquisar por ID:</label>
+                <input type="text" id="filter-id" [(ngModel)]="filters.id" (input)="applyFilters()">
+            </div>
+            <button class="toggleFiltersButton" (click)="toggleFilters()">
+                {{ showFilters ? 'Recolher Filtros' : 'Expandir Filtros' }}
+            </button>
+
+            <div class="filters" *ngIf="showFilters">
+
+                <label for="filter-date">Ordenar por Data:</label>
+                <select id="filter-date" [(ngModel)]="filters.dateOrder" (change)="applyFilters()">
+                    <option value="asc">Ascendente</option>
+                    <option value="desc">Descendente</option>
+                </select>
+
+                <label for="filter-exactDate">Data exata:</label>
+                <input type="date" id="filter-exactDate" [(ngModel)]="filters.exactDate" (input)="applyFilters()">
+
+                <label for="filter-kilos">Filtrar por Quilos:</label>
+                <input type="number" id="filter-kilos" [(ngModel)]="filters.kilos" (input)="applyFilters2()">
+
+                <label for="filter-numberPieces">Filtrar por número de peças:</label>
+                <input type="text" id="filter-numberPieces" [(ngModel)]="filters.numberPieces" (input)="applyFilters()">
+
+                <div *ngIf="thisRole === 'doador'; else roleEntity">
+                <label for="filter-state">Filtrar por estado:</label>
+                <select id="filter-state" [(ngModel)]="filters.state" (change)="applyFilters()">
+                    <option value="Por iniciar">Por iniciar</option>
+                    <option value="A realizar">A realizar</option>
+                    <option value="Validado">Validado</option>
+                    <option value="Cancelado">Cancelado</option>
+                </select>
+                </div>
+                <ng-template #roleEntity>
+                    <label for="filter-state">Filtrar por estado:</label>
+                    <select id="filter-state" [(ngModel)]="filters.state" (change)="applyFilters()">
+                        <option value="A realizar">A realizar</option>
+                        <option value="Validado">Validado</option>
+                        <option value="Cancelado">Cancelado</option>
+                    </select>
+                </ng-template>
+
+                <button class="clearFiltersButton" (click)="clearFilters()">Limpar Filtros</button>
+            </div>
+
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Id</th>
+                            <th>Entidade</th>
+                            <th>Quilos</th>
+                            <th>Pontos</th>
+                            <th>Nº Peças</th>
+                            <th>Data</th>
+                            <th>Hora</th>
+                            <th>Estado</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let doacao of filteredDoacoes" (click)="showDetails(doacao)">
+                            <td>{{doacao._id}}</td>
+                            <td>{{doacao.entidade}}</td>
+                            <td>{{doacao.kilos}}</td>
+                            <td>{{doacao.pontos}}</td>
+                            <td>{{doacao.numeroPecas}}</td>
+                            <td>{{doacao.data | date:'dd/MM/yyyy'}}</td>
+                            <td>{{doacao.data | date:'HH:mm'}}</td>
+                            <td>{{doacao.estado}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="right-panel" *ngIf="selectedDoacao">
+            <img class="preview-image-details" [src]="getImage(selectedDoacao)" alt="Foto de Perfil">
+            <h2>Detalhes da Doação</h2>
+            <p><strong>ID:</strong> {{selectedDoacao._id}}</p>
+            <p><strong>Entidade:</strong> {{selectedDoacao.entidade}}</p>
+            <p><strong>Quilos:</strong> {{selectedDoacao.kilos}}</p>
+            <p><strong>Pontos:</strong> {{selectedDoacao.pontos}}</p>
+            <p><strong>Nº Peças:</strong> {{selectedDoacao.numeroPecas}}</p>
+            <p><strong>Estado da roupa:</strong> {{selectedDoacao.estadoRoupa}}</p>
+            <p><strong>Peças de criança:</strong> {{selectedDoacao.pecasCrianca}}</p>
+            <p><strong>Peças de adulto:</strong> {{selectedDoacao.pecasAdulto}}</p>
+            <p><strong>Peças de adolescente:</strong> {{selectedDoacao.pecasAdolescente}}</p>
+            <p><strong>Peças interiores:</strong> {{selectedDoacao.pecasTipoInterior}}</p>
+            <p><strong>T-shirts/Camisolas:</strong> {{selectedDoacao.pecasTipoTronco}}</p>
+            <p><strong>Peças inferiores:</strong> {{selectedDoacao.pecasTipoInferior}}</p>
+            <p><strong>Calçado:</strong> {{selectedDoacao.pecasTipoCalcado}}</p>
+            <p><strong>Data:</strong> {{selectedDoacao.data | date:'dd/MM/yyyy'}}</p>
+            <p><strong>Hora:</strong> {{selectedDoacao.data | date:'HH:mm'}}</p>
+            <div class="stateChange" *ngIf="selectedDoacao.estado === 'Agendado' && thisRole === 'doador'">
+                <label><strong>Estado:</strong></label>
+                <select id="stateChange" #stateSelect>
+                    <option value="Agendado">Agendado</option>
+                    <option value="Cancelado">Cancelar</option>
+                </select>
+                <button class="updateStateButton" (click)="updateState(stateSelect.value)">Guardar estado</button>
+            </div>
+            <div class="stateDiv" *ngIf="selectedDoacao.estado !== 'Agendado' && thisRole === 'doador'">
+                <p><strong>Estado:</strong> {{selectedDoacao.estado}}</p>
+            </div>
+            <div class="stateChange" *ngIf="selectedDoacao.estado === 'A realizar' && thisRole === 'entidade'">
+                <label><strong>Estado:</strong></label>
+                <select id="stateChange" #stateSelect>
+                    <option value="A realizar">A realizar</option>
+                    <option value="Validado">Validar</option>
+                </select>
+                <br>
+                <button class="updateStateButton" (click)="updateState(stateSelect.value)">Guardar estado</button>
+            </div>
+            <div class="stateDiv" *ngIf="(selectedDoacao.estado === 'Validado' || selectedDoacao.estado === 'Cancelado' || selectedDoacao.estado === 'Aprovado') && thisRole === 'entidade'">
+                <p><strong>Estado:</strong> {{selectedDoacao.estado}}</p>
+            </div>
+        </div>
+    </div>
+</ng-template> 

@@ -1,0 +1,88 @@
+<app-header-user></app-header-user>
+<div class="background">
+    <div class="form-container">
+        <h2>Dados Pessoais</h2>
+        <form [formGroup]="doadorForm" (ngSubmit)="onSubmit()" enctype="multipart/form-data" #formDir="ngForm">
+            <div>
+                <label for="fotoPerfil">Foto de Perfil:</label>
+                <img class="preview-image" *ngIf="imageUrl" [src]="imageUrl" alt="Foto de Perfil">
+                <p>Insira aqui a sua nova foto de perfil:</p>
+                <input type="file" formControlName="fotoPerfil" accept="image/*" (change)="onFileSelected($event)">
+            </div>
+            <div class="info-line">
+                <div class="info-lineA">
+                    <div class="info-item">
+                        <label for="email">Email:</label>
+                        <br>
+                        <span class="non-editable">{{ doadorForm.get('email')?.value }}</span>
+                    </div>
+                    <div class="info-item">
+                        <label for="numPontos">Código de convite:</label>
+                        <br>
+                        <span class="non-editable">{{ doadorForm.get('codigoAngariador')?.value }}</span>
+                    </div>
+                </div>
+                <div class="info-lineA">
+                    <div class="info-item">
+                        <label for="numPontos">Numero de Pontos:</label>
+                        <br>
+                        <span class="non-editable">{{ doadorForm.get('numeroPontos')?.value }}</span>
+                    </div>
+                    <div class="info-item">
+                        <label for="numDoacoes">Numero de Doações:</label>
+                        <br>
+                        <span class="non-editable">{{doadorForm.get('numeroDoacoes')?.value}}</span>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <label for="nome">Nome:</label>
+                <input type="text" formControlName="nome">
+            </div>
+            <div *ngIf="getName().invalid && formDir.submitted" class="validation-error">
+                <p *ngIf="getName().errors?.['required']">O Nome é obrigatório</p>
+            </div>
+            <div>
+                <label for="apelido">Apelido:</label>
+                <input type="text" formControlName="apelido">
+            </div>
+            <div *ngIf="getApelido().invalid && formDir.submitted" class="validation-error">
+                <p *ngIf="getApelido().errors?.['required']">O Apelido é obrigatório</p>
+            </div>
+            <div>
+                <label for="nif">NIF:</label>
+                <input type="text" formControlName="nif">
+            </div>
+            <div *ngIf="getNif().invalid && formDir.submitted" class="validation-error">
+                <p *ngIf="getNif().errors?.['required']">O NIF é obrigatório</p>
+                <p *ngIf="getNif().errors?.['pattern']">O NIF deve conter exatamente 9 dígitos numéricos</p>
+            </div>
+            <div>
+                <label for="morada">Morada:</label>
+                <input type="text" formControlName="morada">
+            </div>
+            <div *ngIf="getMorada().invalid && formDir.submitted" class="validation-error">
+                <p *ngIf="getMorada().errors?.['required']">A morada é obrigatória</p>
+            </div>
+            <div>
+                <label for="contacto">Contacto (opcional):</label>
+                <input type="tel" formControlName="contacto">
+            </div>
+            <div *ngIf="getContacto().invalid && formDir.submitted" class="validation-error">
+                <p *ngIf="getContacto().errors?.['pattern']">O contacto deve de conter 9 digitos e começar por 9</p>
+            </div>
+            <div>
+                <label for="passwordAtual">Password atual:</label>
+                <input type="password" formControlName="passwordAtual">
+            </div>
+            <div>
+                <label for="passwordNova">Password nova:</label>
+                <input type="password" formControlName="passwordNova">
+            </div>
+            <div class="button-group">
+                <button type="submit">Atualizar Dados</button>
+                <button type="button" class="back" onclick="window.history.back()">Voltar</button>
+            </div>
+        </form>
+    </div>
+</div>

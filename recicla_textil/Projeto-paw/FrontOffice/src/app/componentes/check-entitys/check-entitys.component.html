@@ -1,0 +1,49 @@
+<app-header-user></app-header-user>
+
+<div class="background">
+    <div class="search-container">
+        <input type="text" placeholder="Pesquisar entidades..." [(ngModel)]="searchTerm" (input)="filterEntities()">
+    </div>
+
+    <div class="container">
+        <div *ngFor="let entity of filteredEntities" class="entity-box">
+                        <div class="preview-image-container">
+                            <img class="preview-image" [src]="getImage(entity)" alt="Foto de Perfil">
+                        </div>
+            <p class="truncate">Nome: {{entity.nome}}</p>
+            <p class="truncate">Email: {{entity.email}}</p>
+            <p class="truncate">Contacto: {{entity.contacto}}</p>
+            <p class="truncate">Morada: {{entity.morada}}</p>
+            <button class="detailsButton" (click)="abrirModalDetalhes(entity)">Detalhes</button>
+        </div>
+    </div>
+</div>
+
+<div class="modal" *ngIf="modalVisible">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">Detalhes da Entidade</h3>
+                <button type="button" class="btn-close" (click)="fecharModal()">×</button>
+            </div>
+            <div class="modal-body" *ngIf="selectedEntity">
+                <img class="preview-image-details" [src]="getImage(selectedEntity)" alt="Foto de Perfil">
+                <p>Nome: {{selectedEntity.nome}}</p>
+                <p>Email: {{selectedEntity.email}}</p>
+                <p>Contacto: {{selectedEntity.contacto}}</p>
+                <p>Morada: {{selectedEntity.morada}}</p>
+                <p class="descricao">Descrição: {{selectedEntity.descricao}}</p>
+                <div *ngIf="selectedEntity.fotos && selectedEntity.fotos.length > 0">
+                    <h5>Fotos Adicionais:</h5>
+                    <div class="additional-photos">
+                        <img *ngFor="let foto of selectedEntity.fotos" [src]="getImageAdicional(foto)" alt="Foto adicional" class="additional-photo">
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="doarButton" (click)="criarDoacao(selectedEntity.nome)">Doar</button>
+            </div>
+            <div id="paypal-donate-button-container"></div>
+        </div>
+    </div>
+</div>

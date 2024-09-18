@@ -1,0 +1,140 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #faf3e0;
+}
+
+h2 {
+  text-align: center;
+  color: #333;
+  margin-top: 20px;
+}
+
+.container {
+  background-color: #fff;
+  width: 60%;
+  margin: 20px auto;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.informacao {
+  margin-bottom: 15px;
+}
+
+.label {
+  font-weight: bold;
+}
+
+.value {
+  margin-left: 10px;
+}
+
+.link {
+  display: block;
+  text-align: center;
+  margin: 20px auto;
+  text-decoration: none;
+  color: #fff;
+  background-color: #ffad99;
+  padding: 10px 20px;
+  border-radius: 5px;
+  width: 25%;
+}
+
+.link:hover {
+  background-color: #ffcc99;
+}
+
+.foto-perfil,
+.foto-adicional {
+    max-width: 100%;
+    height: auto;
+    margin-top: 10px;
+    border-radius: 5px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+}
+
+.informacao ul {
+  list-style-type: none;
+}
+
+
+.button {
+  font-size: 17px;
+  width: 30%;
+  display: block;
+  margin: 20px auto;
+  text-align: center;
+  text-decoration: none;
+  color: #fff;
+  border: none;
+  background-color: #ffad99;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.button:hover {
+  background-color: #ffcc99;
+}
+
+/* Estilos para o modal */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal-content {
+  text-align: center;
+  background-color: #fefefe;
+  margin: 15% auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%;
+}
+
+.modal-buttons {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.modal-buttons button {
+  margin: 5px;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.modal-buttons button#confirmButton {
+  background-color: #ffad99;
+  color: white;
+  border: none;
+}
+
+.modal-buttons button#confirmButton:hover {
+  background-color: #ffcc99;
+}
+
+.modal-buttons button#cancelButton {
+  background-color: #ddd;
+  color: #333;
+  border: none;
+}
+
+.modal-buttons button#cancelButton:hover {
+  background-color: #ccc;
+}
+
+
+#morada {
+ width: 50%;
+}

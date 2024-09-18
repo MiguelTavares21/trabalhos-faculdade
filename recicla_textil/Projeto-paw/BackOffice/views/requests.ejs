@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Backoffice</title>
+    <link rel="stylesheet" href="/stylesheets/todosPedidos_style.css">
+</head>
+
+<body>
+    <%- include('index.ejs') %>
+        <div class="divButtons">
+            <a href="/requests/criarPedido" class="buttonRequestCriar">Criar pedido</a>
+        </div>
+
+        <h2>Lista de pedidos</h2>
+
+        <h3>Por Iniciar</h3>
+        <div class="table-container">
+            <table id="por-iniciar-table">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Email do utilizador</th>
+                        <th>Entidade</th>
+                        <th>Pontos</th>
+                        <th>Quilos</th>
+                        <th>Número de peças total</th>
+                        <th>Peças de roupa de criança</th>
+                        <th>Peças de roupa de adulto</th>
+                        <th>Peças de roupa de adolescente</th>
+                        <th>Peças de roupa tipo interior</th>
+                        <th>Peças de roupa tipo inferior</th>
+                        <th>Peças de roupa tipo tronco</th>
+                        <th>Calçado</th>
+                        <th>Data</th>
+                        <th>Ações</th>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+        </div>
+
+        <h3>A Realizar</h3>
+        <div class="table-container">
+            <table id="a-realizar-table">
+                <thead>
+                    <tr>
+                        <th>Id do pedido</th>
+                        <th>Email do utilizador</th>
+                        <th>Entidade</th>
+                        <th>Pontos</th>
+                        <th>Quilos</th>
+                        <th>Número de peças total</th>
+                        <th>Peças de roupa de criança</th>
+                        <th>Peças de roupa de adulto</th>
+                        <th>Peças de roupa de adolescente</th>
+                        <th>Peças de roupa tipo interior</th>
+                        <th>Peças de roupa tipo inferior</th>
+                        <th>Peças de roupa tipo tronco</th>
+                        <th>Calçado</th>
+                        <th>Data</th>
+                        <th>Ações</th>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+        </div>
+
+        <h3>Validado</h3>
+        <div class="table-container">
+            <table id="validado-table">
+                <thead>
+                    <tr>
+                        <th>Id do pedido</th>
+                        <th>Email do utilizador</th>
+                        <th>Entidade</th>
+                        <th>Pontos</th>
+                        <th>Quilos</th>
+                        <th>Número de peças total</th>
+                        <th>Peças de roupa de criança</th>
+                        <th>Peças de roupa de adulto</th>
+                        <th>Peças de roupa de adolescente</th>
+                        <th>Peças de roupa tipo interior</th>
+                        <th>Peças de roupa tipo inferior</th>
+                        <th>Peças de roupa tipo tronco</th>
+                        <th>Calçado</th>
+                        <th>Data</th>
+                        <th>Ações</th>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+        </div>
+        <h3>Cancelado</h3>
+        <div class="table-container">
+            <table id="cancelado-table">
+                <thead>
+                    <tr>
+                        <th>Id do pedido</th>
+                        <th>Email do utilizador</th>
+                        <th>Entidade</th>
+                        <th>Pontos</th>
+                        <th>Quilos</th>
+                        <th>Número de peças total</th>
+                        <th>Peças de roupa de criança</th>
+                        <th>Peças de roupa de adulto</th>
+                        <th>Peças de roupa de adolescente</th>
+                        <th>Peças de roupa tipo interior</th>
+                        <th>Peças de roupa tipo inferior</th>
+                        <th>Peças de roupa tipo tronco</th>
+                        <th>Calçado</th>
+                        <th>Data</th>
+                        <th>Ações</th>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+        </div>
+        <a href="/">Voltar ao Menu Principal</a>
+
+        <script src="/javascripts/listarRequests.js" data-pedidos="<%= JSON.stringify(pedidos) %>"></script>
+</body>
+
+</html>

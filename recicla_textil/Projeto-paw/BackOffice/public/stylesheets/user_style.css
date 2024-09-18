@@ -1,0 +1,84 @@
+h2, h3 {
+    text-align: center;
+}
+
+.user-management {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    margin: 20px;
+}
+
+.management-section {
+    width: 300px; 
+    margin: 0 10px; 
+    margin-bottom: 20px; 
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.management-section:hover {
+    transform: translateY(-5px);
+}
+
+.management-section strong {
+    font-size: 20px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 15px;
+}
+
+.management-section ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.management-section ul li {
+    margin-bottom: 15px;
+}
+
+.management-section ul li a {
+    display: block;
+    width: 100%;
+    padding: 12px 0;
+    text-decoration: none;
+    color: #444;
+    font-size: 18px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.management-section ul li a:hover {
+    background-color: #ffcc99;
+    color: #333;
+}
+
+.notification-badge {
+    position: relative;
+    top: -8px;
+    right: -8px;
+    background-color: red;
+    color: white;
+    border-radius: 50%;
+    padding: 5px 8px;
+    font-size: 12px;
+}
+
+
+@media only screen and (max-width: 600px) {
+    .management-section {
+        width: 90%;
+        margin: 0 auto; 
+    }
+    
+    .user-management {
+        margin: 20px 0;
+    }
+}

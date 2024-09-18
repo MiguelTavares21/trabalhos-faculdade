@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Adicionar Entidade</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css">
+</head>
+<body>
+  <form [formGroup]="entidadeForm" (ngSubmit)="onSubmit()" enctype="multipart/form-data" #formDir="ngForm">
+    <div>
+      <label for="nome">Nome:</label>
+      <input type="text" formControlName="nome">
+    </div>
+    <div *ngIf="getName().invalid && formDir.submitted" class="validation-error">
+      <p *ngIf="getName().errors?.['required']">O Nome é obrigatório</p>
+    </div>
+    <div>
+      <label for="descricao">Descricao:</label>
+      <input type="text" formControlName="descricao">
+    </div>
+    <div *ngIf="getDescricao().invalid && formDir.submitted" class="validation-error">
+      <p *ngIf="getDescricao().errors?.['required']">A descrição é obrigatória</p>
+    </div>
+    <div>
+      <label for="email">Email:</label>
+      <input type="email" formControlName="email">
+    </div>
+    <div *ngIf="getEmail().invalid && formDir.submitted" class="validation-error">
+      <p *ngIf="getEmail().errors?.['required']">O email é obrigatório</p>
+      <p *ngIf="getEmail().errors?.['email']">Insira um email válido. Deve conter:
+         '&#64;'</p>
+    </div>
+    <div>
+        <label for="contacto">Contacto:</label>
+        <input type="tel" formControlName="contacto">
+      </div>
+      <div *ngIf="getContacto().invalid && formDir.submitted" class="validation-error">
+        <p *ngIf="getContacto().errors?.['required']">O contacto é obrigatório</p>
+        <p *ngIf="getContacto().errors?.['pattern']">O contacto deve de conter 9 digitos e começar por 9</p>
+      </div>
+      <div>
+        <label for="morada">Morada:</label>
+        <input type="text" formControlName="morada">
+      </div>
+      <div *ngIf="getMorada().invalid && formDir.submitted" class="validation-error">
+        <p *ngIf="getMorada().errors?.['required']">A morada é obrigatória</p>
+      </div>
+      <div>
+        <label for="password">Password:</label>
+        <div data-mdb-input-init class="input-group mb-4 highlighted-div" id="passLogin">
+          <input type="password" formControlName="password" class="form-control" id="passwordInput" />
+          <span class="input-group-text" (click)="togglePasswordVisibility()">
+            <i class="fas fa-eye" id="togglePasswordIcon"></i>
+          </span>
+        </div>
+      </div>
+    <div *ngIf="getPassword().invalid && formDir.submitted" class="validation-error">
+      <p *ngIf="getPassword().errors?.['required']">A password é obrigatória</p>
+    </div>
+    <div>
+        <label for="fotoPerfil">Foto de Perfil:</label>
+        <input type="file" formControlName="fotoPerfil" accept="image/*" (change)="onFileSelected($event)">
+        <img class="preview-image" *ngIf="imageUrl" [src]="imageUrl" alt="Foto de Perfil">
+      </div>
+      <div *ngIf="getFotoPerfil().invalid && formDir.submitted" class="validation-error">
+        <p *ngIf="getFotoPerfil().errors?.['required']">A foto de perfil é obrigatória</p>
+      </div>
+      <div>
+        <label for="outrasFotos">Outras fotos (opcional):</label>
+        <input type="file" id="outrasFotos" name="outrasFotos" accept="image/*" multiple (change)="onMultipleFilesSelected($event)">
+        <div id="imagePreviews">
+          <div *ngFor="let image of multipleImages">
+            <img [src]="image" class="preview-image" alt="Foto adicional">
+          </div>
+        </div>
+    </div>
+  
+    <button type="submit" >Criar Entidade</button>
+    <button type="button" class="back" onclick="window.history.back()">Voltar</button>
+  </form>
+</body>
+</html>
+
+  

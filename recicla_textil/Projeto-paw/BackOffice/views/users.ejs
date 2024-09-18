@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Backoffice</title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link rel='stylesheet' href='/stylesheets/user_style.css' />
+</head>
+<body>
+<%- include('index.ejs') %>
+
+<h2>Gestão de Utilizadores</h2>
+<h3>Opções de Gestão:</h3>
+<div class="user-management">
+    <table>
+        <tr>
+            <% if (locals.userRole === 'admin') { %>
+            <td>
+                <div class="management-section">
+                    <strong>Funcionários</strong>
+                    <ul>
+                        <li><a href="/users/criar_funcionario" class="button">Criar Funcionário</a></li>
+                        <li><a href="/users/ver_todos_funcionarios" class="button">Ver Todos os Funcionários</a></li>
+                    </ul>
+                </div>
+            </td>
+            <% } %>
+            <td>
+                <div class="management-section">
+                    <strong>Entidades</strong>
+                    <ul>
+                        <% if (locals.userRole === 'admin') { %>
+                        <li><a href="/users/criar_entidade" class="button">Criar Entidade</a></li>
+                        <% } %>
+                        <li><a href="/users/ver_todas_entidades/ver_todas" class="button">Ver Todas as Entidades</a></li>
+                        <% if (locals.userRole === 'admin') { %>
+                            <li>
+                                <a href="/users/ver_todas_entidades/aceitar_rejeitar" class="button">
+                                    Aceitar/Rejeitar Entidades 
+                                    <% if (locals.numEntidadesPendentes > 0) { %>
+                                        <span class="notification-badge"><%= locals.numEntidadesPendentes %></span>
+                                    <% } %>
+                                </a>
+                            </li>
+                            
+                        <% } %>
+                        <li><a href="/users/ver_todas_entidades/ver_rejeitadas" class="button">Ver Entidades Rejeitadas</a></li>
+                    </ul>
+                </div>
+            </td>
+            <td>
+                <div class="management-section">
+                    <strong>Doadores</strong>
+                    <ul>
+                        <li><a href="/users/criar_doador" class="button">Criar Doador</a></li>
+                        <li><a href="/users/ver_todos_doadores" class="button">Ver Todos os Doadores</a></li>
+                    </ul>
+                </div>
+            </td>
+        </tr>
+    </table>
+</div>
+</body>
+</html>

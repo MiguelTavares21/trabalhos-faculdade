@@ -1,0 +1,167 @@
+main {
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    overflow-y: scroll;
+    scroll-snap-type: y mandatory;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif;
+    box-sizing: border-box;
+}
+
+.slides {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 50px;
+    color: #fff;
+    scroll-snap-align: start;
+    overflow: hidden; /* Adicionado para esconder o overflow */
+}
+
+.slides img {
+    width: 100px;
+}
+
+.slides p {
+    font-size: 30px;
+    font-weight: 650;
+    max-width: 650px;
+}
+
+.slides a {
+    text-decoration: none; /* Remove o sublinhado */
+    color: inherit; /* Faz com que os links herdem a cor do texto pai */
+}
+
+.partner button {
+    background-color: transparent; /* Remove a cor de fundo */
+    border: none; /* Remove a borda */
+    padding: 0; /* Remove o preenchimento interno */
+    cursor: pointer; /* Cursor de mão ao passar */
+    display: flex; /* Permite que a imagem e o texto fiquem em linha */
+    align-items: center; /* Alinha verticalmente o conteúdo */
+    color: #fff; /* Cor do texto */
+    font-size: 30px; /* Tamanho da fonte */
+    font-weight: 650; /* Peso da fonte */
+    max-width: 650px; /* Largura máxima */
+}
+
+.partner button img {
+    width: 50px; /* Ajuste o tamanho da imagem conforme necessário */
+    margin-right: 10px; /* Adicione espaço entre a imagem e o texto */
+}
+
+.slides h2 {
+    font-size: 40px;
+    font-weight: 650;
+    max-width: 650px;
+}
+
+.slide1 {
+    background: linear-gradient(454deg, #ffad99, #8f91ff);
+}
+
+.slide2 {
+    background: linear-gradient(454deg, #ffad99, #6fdca8);
+}
+
+.slide3 {
+    background: linear-gradient(454deg, #ffad99, #ff5858);
+}
+
+.slide4 {
+    background: linear-gradient(454deg, #ffad99, #ede035);
+}
+
+.slide5 {
+    background: linear-gradient(454deg, #ffad99, #2600fc);
+}
+
+.slide1,
+.slide2,
+.slide3,
+.slide4,
+.slide5 {
+    width: 100%;
+    height: 100vh;
+}
+
+.header,
+.footer {
+    position: fixed;
+    width: 100%;
+    z-index: 999;
+    transition: top 0.3s;
+}
+
+.hide {
+    top: -100px;
+}
+
+/* Media Queries para tornar responsivo */
+@media (max-width: 1200px) {
+    .slides p, .partner button {
+        font-size: 25px;
+    }
+    
+    .slides h2 {
+        font-size: 35px;
+    }
+}
+
+@media (max-width: 992px) {
+    .slides p, .partner button {
+        font-size: 22px;
+    }
+    
+    .slides h2 {
+        font-size: 30px;
+    }
+    
+    .slides {
+        gap: 30px;
+    }
+}
+
+@media (max-width: 768px) {
+    .slides p, .partner button {
+        font-size: 20px;
+    }
+    
+    .slides h2 {
+        font-size: 28px;
+    }
+    
+    .slides {
+        flex-direction: column;
+        text-align: center;
+        gap: 20px;
+    }
+    
+    .partner button img {
+        width: 40px;
+    }
+}
+
+@media (max-width: 576px) {
+    .slides p, .partner button {
+        font-size: 18px;
+    }
+    
+    .slides h2 {
+        font-size: 24px;
+    }
+    
+    .partner button img {
+        width: 30px;
+    }
+}

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="pt">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Erro</title>
+        <link rel="stylesheet" href="/stylesheets/error_style.css">
+    </head>
+    <body>
+        <div class="error-container">
+            <% if(error) { %>
+                <h1><%= message %></h1>
+                <pre><%= error.stack %></pre>
+            <% } else { %>
+                <h1>Erro</h1>
+                <h2>Volte para traz para corrigir o mesmo</h2>
+            <% } %>
+            
+            <button onclick="window.history.back()">Voltar</button>
+        </div>
+    </body>
+</html>

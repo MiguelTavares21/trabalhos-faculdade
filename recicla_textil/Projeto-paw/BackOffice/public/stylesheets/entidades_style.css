@@ -1,0 +1,54 @@
+.entidades-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(25%, 1fr));
+    gap: 1%;
+    margin-top: 2%;
+}
+
+.entidade {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.entidade:hover {
+    transform: scale(1.05);
+    cursor: pointer;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+}
+
+
+
+.foto-perfil,
+.foto-adicional {
+    max-width: 100%;
+    height: auto;
+    margin-top: 10px;
+    border-radius: 5px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+}
+
+.informacao ul {
+  list-style-type: none;
+}
+
+
+.detalhes {
+    display: none;
+}
+
+
+.detalhes p {
+    text-align: left;
+    margin-bottom: 5px;
+}
+
+ul {
+    list-style-type: none;
+}

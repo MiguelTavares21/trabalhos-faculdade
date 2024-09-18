@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="pt">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Entidades Beneficiadoras</title>
+        <link rel="stylesheet" href="/stylesheets/verTodos_style.css" />
+        <link rel="stylesheet" href="/stylesheets/entidades_style.css" />
+    </head>
+    <body>
+        <h2>Entidades Beneficiadoras</h2>
+        <div class="entidades-list">
+            <% entidades.forEach(function(entidade) { %>
+            <div class="entidade" onclick="toggleDetalhes(this)">
+                <img
+                    src="/<%= entidade.fotoPerfil %>"
+                    alt="Foto de Perfil"
+                    class="foto-perfil"
+                />
+                <h3><%= entidade.nome %></h3>
+                <div class="detalhes">
+                    <p><strong>Descrição:</strong> <%= entidade.descricao %></p>
+                    <p><strong>Email:</strong> <%= entidade.email %></p>
+                    <p><strong>Contacto:</strong> <%= entidade.contacto %></p>
+                    <p><strong>Morada:</strong> <%= entidade.morada %></p>
+                    <p><strong>Outras fotos:</strong></p>
+                    <ul>
+                        <% entidade.fotos.forEach(function(foto) { %>
+                        <li>
+                            <img
+                                src="/<%= foto %>"
+                                alt="Foto"
+                                class="foto-adicional"
+                            />
+                        </li>
+                        <% }); %>
+                    </ul>
+
+                    <% if (userRole === 'admin') { %> <% if (acao ===
+                    'ver_todas' || acao === 'ver_rejeitadas') { %>
+                    <a
+                        href="/users/editar_entidade/<%= entidade._id%>"
+                        class="edit-button"
+                        >Editar</a
+                    >
+                    <form
+                        id="removeForm_<%= entidade._id %>"
+                        action="/users/remover_entidade"
+                        method="POST"
+                    >
+                        <input
+                            type="hidden"
+                            name="entidadeId"
+                            value="<%= entidade._id %>"
+                        />
+                        <button
+                            type="button"
+                            class="remove-button"
+                            onclick="confirmRemove('<%= entidade._id %>')"
+                        >
+                            Remover
+                        </button>
+                    </form>
+                    <% } if (acao === 'aceitar_rejeitar' || acao ===
+                    'ver_rejeitadas') { %>
+                    <form action="/users/aceitar_entidade" method="POST">
+                        <input
+                            type="hidden"
+                            name="entidadeId"
+                            value="<%= entidade._id %>"
+                        />
+                        <button type="submit" class="aceitar-button">
+                            Aceitar
+                        </button>
+                    </form>
+
+                    <% if (entidade.status !== "rejeitada") { %>
+                    <form action="/users/rejeitar_entidade" method="POST">
+                        <input
+                            type="hidden"
+                            name="entidadeId"
+                            value="<%= entidade._id %>"
+                        />
+                        <button type="submit" class="rejeitar-button">
+                            Rejeitar
+                        </button>
+                    </form>
+                    <% } %> <% } %> <% } %>
+                </div>
+            </div>
+            <% }); %>
+        </div>
+        <a href="/">Voltar ao Menu Principal</a>
+
+        <div id="modal" class="modal" style="display: none">
+            <div class="modal-content">
+                <p>Tem certeza?</p>
+                <div class="modal-buttons">
+                    <button id="confirmButton">Confirmar</button>
+                    <button id="cancelButton">Cancelar</button>
+                </div>
+            </div>
+        </div>
+
+        <script src="/javascripts/detalhes.js"></script>
+        <script src="/javascripts/remover.js"></script>
+    </body>
+</html>

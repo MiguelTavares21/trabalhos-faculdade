@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Backoffice</title>
+    <link rel="stylesheet" href="/stylesheets/myCount.css">
+    <link rel="stylesheet" href="/stylesheets/popUp_style.css">
+</head>
+<body>
+    <%- include('index.ejs') %>
+ <h2>Meus dados</h2>
+    <div class="container">
+        <form>
+            <div class="informacao">
+                <label for="nome" class="label">Nome:</label>
+                <input type="text" id="nome" name="nome" class="value" value="<%= funcionario.nome %>" required>
+            </div>
+            <div class="informacao">
+                <label for="apelido" class="label">Apelido:</label>
+                <input type="text" id="apelido" name="apelido" class="value" value="<%= funcionario.apelido %>" required>
+            </div>
+            <div class="informacao">
+                <label for="email" class="label">Email:</label>
+                <input type="email" id="email" name="email" class="value" value="<%= funcionario.email %>" required>
+            </div>
+            <div class="informacao">
+                <label for="contacto" class="label">Contacto:</label>
+                <input type="text" id="contacto" name="contacto" class="value" value="<%= funcionario.contacto %>" required>
+            </div>
+            <div class="informacao">
+                <label for="morada" class="label">Morada:</label>
+                <input type="text" id="morada" name="morada" class="value" value="<%= funcionario.morada %>" required>
+            </div>
+            <div class="informacao">
+                <label for="senhaAtual" class="label">Senha Atual:</label>
+                <input type="password" id="senhaAtual" name="senhaAtual" class="value" required>
+                <input type="checkbox" onclick="passwordVisibility()">Show Password
+            </div>
+            <div class="informacao">
+                <label for="novaSenha" class="label">Nova Senha:</label>
+                <input type="password" id="novaSenha" name="novaSenha" class="value" required>
+                <input type="checkbox" onclick="passwordVisibility()">Show Password
+            </div>
+            <button type="button" class="button" onclick="confirmEditFuncionario()">Guardar Alterações</button>
+        </form>
+    </div>
+
+
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <p>Tem a certeza que deseja guardar as alterações?</p>
+            <div class="modal-buttons">
+                <button id="confirmButton">Sim</button>
+                <button id="cancelButton">Cancelar</button>
+            </div>
+        </div>
+    </div>
+    <script src="/javascripts/editMyCount.js"></script>
+    <script src="/javascripts/togglePasswordVisibility.js"></script>
+</body>
+</html>

@@ -1,0 +1,134 @@
+<app-header-user></app-header-user>
+<div class="background">
+    <h1>Bem vindo à página de doações!</h1>
+
+    <div>
+        <h2>Criar a minha doação</h2>
+
+        <form [formGroup]="doacaoForm" (ngSubmit)="onSubmit()" enctype="multipart/form-data" #formDir="ngForm">
+            <div class="form-group">
+                <label for="">Nº de peças por faixa etária:</label>
+                <br>
+                <label for="pecasCrianca" style="font-size: 84.4%;">Criança</label>
+                <input type="number" id="pecasCrianca" name="pecasCrianca" formControlName="pecasCrianca" required
+                    title="Introduza um valor numérico positivo">
+                <div *ngIf="getPecasCrianca().invalid && formDir.submitted" class="validation-error">
+                    <p *ngIf="getPecasCrianca().errors?.['required']">Por favor, introduza um valor</p>
+                    <p *ngIf="getPecasCrianca().errors?.['min']">O número de peças de criança é obrigatório e tem que
+                        ser maior ou igual a 0</p>
+                </div>
+                <br>
+                <label for="pecasAdolescente" style="font-size: 84.4%;">Adolescente</label>
+                <input type="number" id="pecasAdolescente" name="pecasAdolescente" formControlName="pecasAdolescente"
+                    required title="Introduza um valor numérico positivo">
+                <div *ngIf="getPecasAdolescente().invalid && formDir.submitted" class="validation-error">
+                    <p *ngIf="getPecasAdolescente().errors?.['required']">Por favor, introduza um valor</p>
+                    <p *ngIf="getPecasAdolescente().errors?.['min']">O número de peças de adolescente tem que ser maior
+                        ou igual a 0</p>
+                </div>
+                <br>
+                <label for="pecasAdulto" style="font-size: 84.4%;">Adulto</label>
+                <input type="number" id="pecasAdulto" name="pecasAdulto" formControlName="pecasAdulto" required
+                    title="Introduza um valor numérico positivo">
+                <div *ngIf="getPecasAdulto().invalid && formDir.submitted" class="validation-error">
+                    <p *ngIf="getPecasAdulto().errors?.['required']">Por favor, introduza um valor</p>
+                    <p *ngIf="getPecasAdulto().errors?.['min']">O número de peças de Adulto tem que ser maior ou igual a
+                        0</p>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="">Nº de peças por tipo de roupa:</label>
+                <br>
+                <label for="pecasTipoInterior" style="font-size: 84.4%;">Roupa interior</label>
+                <input type="number" id="pecasTipoInterior" name="pecasTipoInterior" formControlName="pecasTipoInterior"
+                    required title="Introduza um valor numérico positivo">
+                <div *ngIf="getPecasTipoInterior().invalid && formDir.submitted" class="validation-error">
+                    <p *ngIf="getPecasTipoInterior().errors?.['required']">Por favor, introduza um valor</p>
+                    <p *ngIf="getPecasTipoInterior().errors?.['min']">O número de peças de roupa interior tem que ser
+                        maior ou igual a 0</p>
+                </div>
+                <br>
+                <label for="pecasTipoTronco" style="font-size: 84.4%;">Roupa tronco</label>
+                <input type="number" id="pecasTipoTronco" name="pecasTipoTronco" formControlName="pecasTipoTronco"
+                    required title="Introduza um valor numérico positivo">
+                <div *ngIf="getPecasTipoTronco().invalid && formDir.submitted" class="validation-error">
+                    <p *ngIf="getPecasTipoTronco().errors?.['required']">Por favor, introduza um valor</p>
+                    <p *ngIf="getPecasTipoTronco().errors?.['min']">O número de peças de roupa do tipo tronco tem que
+                        ser maior ou igual a 0</p>
+                </div>
+                <br>
+                <label for="pecasTipoInferior" style="font-size: 84.4%;">Calças/Calções</label>
+                <input type="number" id="pecasTipoInferior" name="pecasTipoInferior" formControlName="pecasTipoInferior"
+                    required title="Introduza um valor numérico positivo">
+                <div *ngIf="getPecasTipoInferior().invalid && formDir.submitted" class="validation-error">
+                    <p *ngIf="getPecasTipoInferior().errors?.['required']">Por favor, introduza um valor</p>
+                    <p *ngIf="getPecasTipoInferior().errors?.['min']">O número de peças de roupa inferior tem que ser
+                        maior ou igual a 0</p>
+                </div>
+                <br>
+                <label for="pecasTipoCalcado" style="font-size: 84.4%;">Calçado</label>
+                <input type="number" id="pecasTipoCalcado" name="pecasTipoCalcado" formControlName="pecasTipoCalcado"
+                    required title="Introduza um valor numérico positivo">
+                <div *ngIf="getPecasTipoCalcado().invalid && formDir.submitted" class="validation-error">
+                    <p *ngIf="getPecasTipoCalcado().errors?.['required']">Por favor, introduza um valor</p>
+                    <p *ngIf="getPecasTipoCalcado().errors?.['min']">O número de peças de calçado tem que ser maior ou
+                        igual a 0</p>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="estadoRoupa">Estado geral da roupa:</label>
+                <select name="estadoRoupa" id="estadoRoupa" formControlName="estadoRoupa" required>
+                    <option value="Usado">Usado</option>
+                    <option value="Semi-Novo">Semi-Novo</option>
+                    <option value="Novo">Novo</option>
+                </select>
+                <div *ngIf="getEstadoRoupa().invalid && formDir.submitted" class="validation-error">
+                    <p *ngIf="getEstadoRoupa().errors?.['required']">É obrigatório introduzir um estado da lista</p>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="kilos">Quilos totais:</label>
+                <input type="number" step="0.01" id="kilos" name="kilos" required formControlName="kilos"
+                    title="Introduza um valor numérico positivo">
+                <div *ngIf="getKilos().invalid && formDir.submitted" class="validation-error">
+                    <p *ngIf="getKilos().errors?.['required']">É obrigatório introduzir um valor
+                    </p>
+                    <p *ngIf="getKilos().errors?.['min']">É obrigatório introduzir um valor numérico maior ou igual a 0
+                    </p>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="entidade">Entidade:</label>
+                <select id="entidade" name="entidade" required>
+                    <option [value]="this.getParamNomeEntidade()">{{ this.getParamNomeEntidade() }}</option>
+                </select>
+            </div>
+                
+            <div class="form-group">
+                <label for="data">Data: </label>
+                <input type="date" id="data" name="data" formControlName="data" [min]="minDate" required>
+                <div *ngIf="getData().invalid && formDir.submitted" class="validation-error">
+                    <p>Por favor, introduza uma data válida</p>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="fotos">Foto da doação:</label>
+                <input type="file" id="fotos" (change)="onFileSelected($event)" accept="image/*" formControlName="fotos"
+                    name="fotos" required>
+                <div *ngIf="getFotos().invalid && formDir.submitted" class="validation-error">
+                    <p *ngIf="getFotos().errors?.['required']">É obrigatório introduzir uma fotografia da doação</p>
+                </div>
+            </div>
+
+            <div *ngIf="checkDonation() === 0 && formDir.submitted" class="validation-error">
+                <p *ngIf="checkDonationExistance() === 0">É obrigatório doar algo.</p>
+                <p *ngIf="checkDonationMath() === 0">É obrigatório o número de peças por tipo corresponder ao número de
+                    peças por faixa etária.</p>
+                <p *ngIf="checkKilos() === 0">É obrigatório introduzir o peso da doação.</p>
+            </div>
+
+            <button type="submit">Enviar doação</button>
+        </form>
+    </div>
+</div>

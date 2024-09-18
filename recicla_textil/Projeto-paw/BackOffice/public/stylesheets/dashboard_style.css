@@ -1,0 +1,71 @@
+body {
+    margin-bottom: 100px; 
+}
+
+h2 {
+    text-align: center;
+    color: #333;
+    margin-top: 20px;
+  }
+
+#formDashboard{
+    text-align: center;
+}
+
+canvas {
+    max-width: 100%; 
+    height: 20px; 
+}
+
+.menu-button {
+    display: block;
+    margin: 20px auto;
+    text-align: center;
+    text-decoration: none;
+    color: #333;
+    background-color: #ffad99;
+    padding: 10px 20px;
+    border-radius: 5px;
+    width: fit-content;
+}
+
+a {
+    text-decoration: none !important; 
+    color: white !important;
+  }
+  
+  a:hover {
+    text-decoration: none !important;
+  }
+  
+
+.menu-button:hover {
+    background-color: #ffcc99;
+}
+
+button {
+    border: none;
+    background-color: #ffad99;
+    color: white;
+    border-radius: 5px !important;
+    cursor: pointer;
+    transition: background-color 0.3s; 
+}
+
+button:hover {
+    background-color: #ffcc99;
+}
+
+@media screen and (max-width: 600px) {
+    body{
+        margin-bottom: 50px;
+    }
+
+    .menu-button {
+        width: 80%;
+    }
+
+    h1{
+        font-size: 15px;
+    }
+}

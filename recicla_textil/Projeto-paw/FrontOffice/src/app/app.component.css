@@ -1,0 +1,23 @@
+footer {
+    background-color: #ffad99;
+    padding: 0.03%;
+    text-align: center;
+    color: #fff;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+  }
+  
+.header-container {
+    background-color: #ffad99;
+    padding: 1%;
+    text-align: center;
+  }
+  
+  header h2 {
+    color: #fff;
+    margin: 0;
+    font-size: 150%;
+    text-transform: uppercase;
+    letter-spacing: 0.5%;
+  }

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="pt">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adicionar Doador</title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link rel="stylesheet" href="/stylesheets/forms_style.css">
+</head>
+
+<body>
+    <h2>Adicionar Doador</h2>
+    <form action="/adicionar_doador" method="post" enctype="multipart/form-data">
+        <div class="form-group">
+            <label for="nome">Nome:</label>
+            <input type="text" id="nome" name="nome" required>
+        </div>
+        <div class="form-group">
+            <label for="apelido">Apelido:</label>
+            <input type="text" id="apelido" name="apelido" required>
+        </div>
+        <div class="form-group">
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+        </div>
+        <div class="form-group">
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required>
+            <input type="checkbox" onclick="passwordVisibility()">Show Password
+        </div>
+        <div class="form-group">
+            <label for="nif">NIF:</label>
+            <input type="text" id="nif" name="nif" required pattern="[0-9]{9}"
+                title="O NIF deve conter exatamente 9 dígitos.">
+        </div>
+        <div class="form-group">
+            <label for="morada">Morada:</label>
+            <input type="text" id="morada" name="morada" required>
+        </div>
+        <div class="form-group">
+            <label for="codigoAngariador">Código de angariador:</label>
+            <input type="text" id="codigoAngariador" name="codigoAngariador" required>
+        </div>
+        <div class="form-group">
+            <label for="codigoAngariadorConvidado">Código de angariador que o convidou:</label>
+            <input type="text" id="codigoAngariadorConvidado" name="codigoAngariadorConvidado" onkeypress="return event.charCode != 32">
+        </div>
+        <div class="form-group">
+            <label for="contacto">Contacto (opcional):</label>
+            <input type="tel" id="contacto" name="contacto" pattern="[9][0-9]{8}"
+                title="O contacto deve começar com o dígito 9 e conter 9 dígitos.">
+        </div>
+        <div class="form-group">
+            <label for="fotoPerfil">Foto de Perfil (opcional):</label>
+            <input type="file" id="fotoPerfil" name="fotoPerfil" accept="image/*">
+            <div id="perfilPreview"></div>
+        </div>
+        <div class="form-group">
+            <button type="submit">Adicionar Doador</button>
+        </div>
+        <button type="button" class="back" onclick="window.history.back()">Voltar</button>
+    </form>
+    <script>
+
+        document.getElementById('fotoPerfil').addEventListener('change', function (event) {
+            var file = event.target.files[0];
+            var perfilPreview = document.getElementById('perfilPreview');
+            perfilPreview.innerHTML = '';
+
+            var img = document.createElement('img');
+            img.classList.add('preview-image');
+            img.src = URL.createObjectURL(file);
+
+            var button = document.createElement('button');
+            button.innerHTML = 'Remover';
+            button.addEventListener('click', function (e) {
+                e.target.previousSibling.remove();
+                e.target.remove();
+            });
+
+            var div = document.createElement('div');
+            div.appendChild(img);
+            div.appendChild(button);
+
+            perfilPreview.appendChild(div);
+        });
+    </script>
+    <script src="/javascripts/togglePasswordVisibility.js"></script>
+</body>
+
+</html>

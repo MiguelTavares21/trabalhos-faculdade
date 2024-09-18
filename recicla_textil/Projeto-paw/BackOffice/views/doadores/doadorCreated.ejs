@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Doador Criado</title>
+    <link rel="stylesheet" href="/stylesheets/style.css" />
+    <link rel="stylesheet" href="/stylesheets/created_style.css">
+</head>
+<body>
+    <h2>Doador Criado com sucesso</h2>
+    <div class="container">
+        <div class="informacao">
+            <span class="label">Nome:</span>
+            <span class="value"><%= nome %></span>
+        </div>
+        <div class="informacao">
+            <span class="label">Apelido:</span>
+            <span class="value"><%= apelido %></span>
+        </div>
+        <div class="informacao">
+            <span class="label">Email:</span>
+            <span class="value"><%= email %></span>
+        </div>
+        <div class="informacao">
+            <span class="label">NIF:</span>
+            <span class="value"><%= nif %></span>
+        </div>
+        <div class="informacao">
+            <span class="label">Contacto:</span>
+            <span class="value"><%= contacto %></span>
+        </div>
+        <div class="informacao">
+            <span class="label">Morada:</span>
+            <span class="value"><%= morada %></span>
+        </div>
+        <div class="informacao">
+            <span class="label">Foto de Perfil:</span>
+            <img src="/<%=fotoPerfil %>" alt="Foto de Perfil" class="foto-perfil">
+        </div>
+    </div>
+
+    <a href="/" class="link">Concluido</a>
+</body>
+</html>

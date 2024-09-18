@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BackOffice</title>
+    <link rel="stylesheet" href="/stylesheets/editar_style.css">
+    <link rel="stylesheet" href="/stylesheets/popUp_style.css">
+    <link rel="stylesheet" href="/stylesheets/vales.css">
+</head>
+
+<body>
+    <h2>Apagar vales</h2>
+    <div class="container">
+        <ul>
+            <% for(var i=0; i < vales.length; i++) { %>
+                <li>
+                    <div class="valeInfo">
+                        <img
+                        src="/<%= vales[i].fotos %>"
+                        alt="Foto"
+                        class="foto-adicional"
+                    />
+                    <br>
+                    Empresa: <%= vales[i].empresa %>
+                    <br>
+                    Descrição: <%= vales[i].descricao %>
+                    <br>
+                    Custo Pontos: <%= vales[i].custoPontos %>
+                    <br>
+                    <button class="deleteButton" id="deleteButton" onclick="deleteVale('<%= vales[i]._id %>')">Apagar vale</button>
+                    </div>
+                </li>
+                <% } %>
+        </ul>
+        <button type="button" class="back" onclick="window.history.back()">Voltar</button>
+    </div>
+    <script src="/javascripts/deleteVale.js"></script>
+</body>
+
+</html>

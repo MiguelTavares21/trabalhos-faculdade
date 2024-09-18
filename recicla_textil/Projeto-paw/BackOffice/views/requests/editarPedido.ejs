@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Backoffice</title>
+    <link rel="stylesheet" href="/stylesheets/editar_style.css">
+    <link rel="stylesheet" href="/stylesheets/popUp_style.css">
+</head>
+
+<body>
+    <h2>Editar Pedido: <%= pedido._id %>
+    </h2>
+    <div class="container">
+        <form>
+            <input type="hidden" name="pedidoId" id="pedidoId" value="<%= pedido._id %>">
+            <div class="informacao">
+                <label for="entidade" class="label">Entidade:</label>
+                <input type="text" id="entidade" name="entidade" class="value" value="<%= pedido.entidade %>" required>
+            </div>
+            <div class="informacao">
+                <label for="kilos" class="label">Quilos:</label>
+                <input type="text" id="kilos" name="kilos" class="value" value="<%= pedido.kilos %>" required
+                    title="Introduza um valor numérico maior que 0">
+            </div>
+            <div class="informacao">
+                <label for="pecasCrianca" class="label">Número de peças de roupa de criança:</label>
+                <input type="text" id="pecasCrianca" name="pecasCrianca" class="value"
+                    value="<%= pedido.pecasCrianca %>" required title="Introduza um valor numérico maior ou igual a 0">
+            </div>
+            <div class="informacao">
+                <label for="pecasAdulto" class="label">Número de peças de roupa de adulto:</label>
+                <input type="text" id="pecasAdulto" name="pecasAdulto" class="value" value="<%= pedido.pecasAdulto %>"
+                    required title="Introduza um valor numérico maior ou igual a 0">
+            </div>
+            <div class="informacao">
+                <label for="pecasAdolescente" class="label">Número de peças de roupa de adolescente:</label>
+                <input type="text" id="pecasAdolescente" name="pecasAdolescente" class="value"
+                    value="<%= pedido.pecasAdolescente %>" required
+                    title="Introduza um valor numérico maior ou igual a 0">
+            </div>
+            <div class="informacao">
+                <label for="pecasTipoInterior" class="label">Número de peças de roupa interior:</label>
+                <input type="text" id="pecasTipoInterior" name="pecasTipoInterior" class="value"
+                    value="<%= pedido.pecasTipoInterior %>" required
+                    title="Introduza um valor numérico maior ou igual a 0">
+            </div>
+            <div class="informacao">
+                <label for="pecasTipoInferior" class="label">Número de peças de roupa inferior:</label>
+                <input type="text" id="pecasTipoInferior" name="pecasTipoInferior" class="value"
+                    value="<%= pedido.pecasTipoInferior %>" required
+                    title="Introduza um valor numérico maior ou igual a 0">
+            </div>
+            <div class="informacao">
+                <label for="pecasTipoTronco" class="label">Número de peças de roupa tronco:</label>
+                <input type="text" id="pecasTipoTronco" name="pecasTipoTronco" class="value"
+                    value="<%= pedido.pecasTipoTronco %>" required
+                    title="Introduza um valor numérico maior ou igual a 0">
+            </div>
+            <div class="informacao">
+                <label for="pecasTipoCalcado" class="label">Número de peças de calçado:</label>
+                <input type="text" id="pecasTipoCalcado" name="pecasTipoCalcado" class="value"
+                    value="<%= pedido.pecasTipoCalcado %>" required
+                    title="Introduza um valor numérico maior ou igual a 0">
+            </div>
+            <div class="informacao">
+                <label for="estadoRoupa" class="label">Estado geral da roupa:</label>
+                <select name="estadoRoupa" id="estadoRoupa" required>
+                    <option value="Novo">Novo</option>
+                    <option value="Usado">Usado</option>
+                    <option value="Semi-Novo">Semi-Novo</option>
+                    
+                </select>
+            </div>
+            <div class="informacao">
+                <span class="label">Fotos:</span>
+                <ul>
+                    <% pedido.fotos.forEach(function(foto) { %>
+                        <li>
+                            <img src="/<%= foto %>" alt="Foto" class="foto-adicional">
+                        </li>
+                        <% }); %>
+                </ul>
+            </div>
+            <input type="hidden" name="email" id="email" class="value" value="<%= pedido.email %>">
+            <div class="informacao">
+                <label for="estado" class="label">Estado:</label>
+                <select id="estado" name="estado" class="value" required>
+                </select>
+            </div>
+            <button type="button" class="button" onclick="confirmEdit()">Guardar Alterações</button>
+            <a href="/" class="link">Voltar ao Menu Principal</a>
+        </form>
+    </div>
+
+
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <p>Tem a certeza que deseja guardar as alterações?</p>
+            <div class="modal-buttons">
+                <button id="confirmButton">Sim</button>
+                <button id="cancelButton">Cancelar</button>
+            </div>
+        </div>
+    </div>
+    <script src="/javascripts/editarPedido.js"></script>
+    <script>
+        function preencherMenuSuspensoEstado() {
+            var selectEstado = document.getElementById('estado');
+            var enumEstados = ["Por iniciar", "Aprovado", "Validado", "Cancelado"];
+
+
+            enumEstados.forEach(function (estado) {
+                var option = document.createElement('option');
+                option.value = estado;
+                option.text = estado;
+                selectEstado.appendChild(option);
+            });
+
+
+            selectEstado.value = "<%= pedido.estado %>";
+        }
+
+        window.onload = preencherMenuSuspensoEstado;
+
+    </script>
+</body>
+
+</html>

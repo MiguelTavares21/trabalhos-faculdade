@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ver Todos os Funcionários</title>
+    <link rel="stylesheet" href="/stylesheets/verTodos_style.css">
+    <link rel="stylesheet" href="/stylesheets/popUp_style.css">
+    
+</head>
+<body>
+    <h2>Lista de Funcionários</h2>
+    <div class="table-container">
+        <table>
+            <thead>
+                <tr>
+                    <th>Nome</th>
+                    <th>Apelido</th>
+                    <th>Email</th>
+                    <th>Número de Empresa</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% funcionarios.forEach(funcionario => { %>
+                    <tr>
+                        <td><%= funcionario.nome %></td>
+                        <td><%= funcionario.apelido %></td>
+                        <td><%= funcionario.email %></td>
+                        <td><%= funcionario.numero_empresa %></td>
+                        <td>
+                            <a href="/users/editar_funcionario/<%= funcionario._id %>" class="edit-button">Editar</a>
+                            
+                            <form id="removeForm_<%= funcionario._id %>">
+                                <input type="hidden" name="funcionarioId" value="<%= funcionario._id %>">
+                                <button type="button" class="remove-button" onclick="confirmRemoveFuncionario('<%= funcionario._id %>')">Remover</button>
+                            </form>
+                        </td>
+                    </tr>
+                <% }); %>
+            </tbody>
+        </table>
+    </div>
+    <a href="/">Voltar ao Menu Principal</a>
+
+
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <p>Tem a certeza que deseja remover este funcionário?</p>
+            <div class="modal-buttons">
+                <button id="confirmButton">Confirmar</button>
+                <button id="cancelButton">Cancelar</button>
+            </div>
+        </div>
+    </div>
+
+   <script src="/javascripts/editar.js"></script>
+</body>
+</html>

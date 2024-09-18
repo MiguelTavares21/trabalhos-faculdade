@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../stylesheets/rules.css">
+    <link rel="stylesheet" href="/stylesheets/popUp_style.css">
+    <title>Backoffice</title>
+</head>
+<body>
+    <%- include('index.ejs') %>
+    <h2>Definição de regras</h2>
+
+    <h3>Regras de pontos:</h3>
+    <form id="formRulesPoints">
+        <label for="pontosPorKilo">Pontos por Kg:</label>
+        <input type="text" name="pontosPorKilo" id="pontosPorKilo" value=<%= rules.pontosPorKilo %>>
+        <br>
+        <label for="pontosPorPecaCrianca">Pontos por peça criança:</label>
+        <input type="text" name="pontosPorPecaCrianca" id="pontosPorPecaCrianca" value=<%= rules.pontosPorPecaCrianca %>>
+        <br>
+        <label for="pontosPorPecaAdulto">Pontos por peça adulto:</label>
+        <input type="text" name="pontosPorPecaAdulto" id="pontosPorPecaAdulto" value=<%= rules.pontosPorPecaAdulto %>>
+        <br>
+        <label for="pontosPorPecaAdolescente">Pontos por peça adolescente:</label>
+        <input type="text" name="pontosPorPecaAdolescente" id="pontosPorPecaAdolescente" value=<%= rules.pontosPorPecaAdolescente %>>
+        <br>
+        <label for="pontosPorTipoInterior">Pontos por tipo interior:</label>
+        <input type="text" name="pontosPorTipoInterior" id="pontosPorTipoInterior" value=<%= rules.pontosPorTipoInterior %>>
+        <br>
+        <label for="pontosPorTipoInferior">Pontos por tipo inferior:</label>
+        <input type="text" name="pontosPorTipoInferior" id="pontosPorTipoInferior" value=<%= rules.pontosPorTipoInferior %>>
+        <br>
+        <label for="pontosPorTipoTronco">Pontos por tipo tronco:</label>
+        <input type="text" name="pontosPorTipoTronco" id="pontosPorTipoTronco" value=<%= rules.pontosPorTipoTronco %>>
+        <br>
+        <label for="pontosPorTipoCalcado">Pontos por tipo calçado:</label>
+        <input type="text" name="pontosPorTipoCalcado" id="pontosPorTipoCalcado" value=<%= rules.pontosPorTipoCalcado %>>
+        <br>
+        <label for="pontosPorEstadoRoupaNovo">Pontos por peça de roupa nova:</label>
+        <input type="text" name="pontosPorEstadoRoupaNovo" id="pontosPorEstadoRoupaNovo" value=<%=rules.pontosPorEstadoRoupaNovo %>>
+        <br>
+        <label for="pontosPorEstadoRoupaSemiNovo">Pontos por peça de roupa semi nova:</label>
+        <input type="text" name="pontosPorEstadoRoupaSemiNovo" id="pontosPorEstadoRoupaSemiNovo" value=<%=rules.pontosPorEstadoRoupaSemiNovo %>>
+        <br>
+        <label for="pontosPorEstadoRoupaUsado">Pontos por peça de roupa usada:</label>
+        <input type="text" name="pontosPorEstadoRoupaUsado" id="pontosPorEstadoRoupaUsado" value=<%=rules.pontosPorEstadoRoupaUsado %>>
+        <br>
+        <label for="pontosCodigo">Pontos por código de angariador:</label>
+        <input type="text" name="pontosCodigo" id="pontosCodigo" value=<%=rules.pontosCodigo %>>
+        <br>
+        <button type="button" onclick="submitForm()">Guardar</button>
+    </form>
+
+    <script src="../javascripts/rulesScript.js"></script>
+</body>
+</html>

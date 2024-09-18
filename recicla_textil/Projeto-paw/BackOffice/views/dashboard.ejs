@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="/stylesheets/dashboard_style.css"> 
+</head>
+<body>
+    <%- include('index.ejs') %>
+    <h2>Dashboard de Pedidos(Ano)</h2>
+    <div id="graficoContainer" style="width: 60%; margin: auto;">
+        <canvas id="graficoPedidosPorMes"></canvas>
+    </div>
+    
+    <form id="formDashboard" style="margin-bottom: 20px;"> 
+        <label for="ano">Selecione o ano:</label>
+        <input type="number" id="ano" name="ano" min="2000" max="2100" required>
+        <button type="submit">Procurar</button>
+        
+    </form>
+
+    <div id="resultadoDashboard">
+        <a href="/" class="menu-button">Voltar ao Menu Principal</a>
+    </div>
+
+    <script src="/javascripts/dashboard.js"></script>
+</body>
+</html>
