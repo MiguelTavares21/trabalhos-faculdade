@@ -1,0 +1,7 @@
+Capturar Imagem;Capturar imagem da Terra para análise
+Transmitir Dados;Transmitir dados para a estação terrestre
+Analisar Sinais;Analisar sinais recebidos do espaço
+Calibrar Instrumentos;Calibrar os instrumentos de observação
+Monitorar Temperatura;Monitorar a temperatura do satélite
+Atualizar Software;Atualizar o software do sistema
+Verificar Órbita;Verificar a órbita do satélite

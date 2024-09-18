@@ -1,0 +1,4 @@
+Usuario;Satelite;Saudacoes do usuario ao satelite
+Satelite;Usuario;Mensagem de boas-vindas do satelite
+Usuario;Satelite;Libertar lixo do satelite: Área 51
+Usuario;Satelite;cuidado com os meteoritos
