@@ -1,0 +1,8 @@
+var searchData=
+[
+  ['verificaradmins_0',['verificarAdmins',['../perfil_8c.html#ad08034c966fb6052767c0cf9eb688309',1,'verificarAdmins(Admins admin, int numeroAdmin, char *password):&#160;perfil.c'],['../perfil_8h.html#ad08034c966fb6052767c0cf9eb688309',1,'verificarAdmins(Admins admin, int numeroAdmin, char *password):&#160;perfil.c']]],
+  ['verificarcliente_1',['verificarCliente',['../perfil_8c.html#aa1cb7e9d1a9fdbc7adc627831be85f02',1,'verificarCliente(Clientes cliente, char nif[9], char *password):&#160;perfil.c'],['../perfil_8h.html#aa1cb7e9d1a9fdbc7adc627831be85f02',1,'verificarCliente(Clientes cliente, char nif[9], char *password):&#160;perfil.c']]],
+  ['verificarencomendasmovel_2',['verificarEncomendasMovel',['../encomenda_8c.html#ace409dd1a7dc49e152f36b47345b7e09',1,'verificarEncomendasMovel(Encomendas encomenda, Moveis movel, int posMovel):&#160;encomenda.c'],['../encomenda_8h.html#ace409dd1a7dc49e152f36b47345b7e09',1,'verificarEncomendasMovel(Encomendas encomenda, Moveis movel, int posMovel):&#160;encomenda.c']]],
+  ['verificarmaterial_3',['verificarMaterial',['../moveis_8c.html#aba363cc27cbfec43940613ff87ff811c',1,'verificarMaterial(Moveis moveis, int posicao, char codigoProduto[TAMANHO_CODIGO_MATERIAL]):&#160;moveis.c'],['../moveis_8h.html#aba363cc27cbfec43940613ff87ff811c',1,'verificarMaterial(Moveis moveis, int posicao, char codigoProduto[TAMANHO_CODIGO_MATERIAL]):&#160;moveis.c']]],
+  ['verificarmovel_4',['verificarMovel',['../moveis_8c.html#a6662060d4b19535a7c68f6b7978df752',1,'verificarMovel(Moveis moveis, char codigoProduto[TAMANHO_CODIGO_MOVEL]):&#160;moveis.c'],['../moveis_8h.html#a888e49ba60ce675cad2ddb97f9a9de78',1,'verificarMovel(Moveis moveis, char codigoProduto[TAMANHO_CODIGO_MOVEL - 1]):&#160;moveis.h']]]
+];

@@ -1,0 +1,27 @@
+var encomenda_8h =
+[
+    [ "movelEncomenda", "structmovel_encomenda.html", "structmovel_encomenda" ],
+    [ "encomenda", "structencomenda.html", "structencomenda" ],
+    [ "encomendas", "structencomendas.html", "structencomendas" ],
+    [ "FICHEIRO_ENCOMENDAS", "encomenda_8h.html#aca1ebc79fc5a6a8d22888eeeb0f071f8", null ],
+    [ "FICHEIRO_MATERIAIS_SEMANA", "encomenda_8h.html#a4ba2c6a73f18c168c85e1f5aaa3b5d9a", null ],
+    [ "FICHEIRO_MOVEIS_FICHA_TECNICA", "encomenda_8h.html#a8077990765c3f1231c058061142dc901", null ],
+    [ "OPERACAO_CANCELADA", "encomenda_8h.html#abe7a34aefdaf6fdb54b029d04e30faf2", null ],
+    [ "TEMPO_ENTREGA", "encomenda_8h.html#af86aaadedf6de0e88a7204d1d778e7e2", null ],
+    [ "Encomenda", "encomenda_8h.html#a52e3359258f2d87b12eae83a0da0e8ce", null ],
+    [ "Encomendas", "encomenda_8h.html#adf796acafab5881adc6f656d725bfee7", null ],
+    [ "MovelEncomenda", "encomenda_8h.html#acb68697577b36b556aecc498b4304c54", null ],
+    [ "calcularDataEntrega", "encomenda_8h.html#a9b4a825bfb549aa49287d2b352cd6af5", null ],
+    [ "cancelarEncomenda", "encomenda_8h.html#a90fa1de260635c483f64b6d151ba88eb", null ],
+    [ "checkEncomendaCancelar", "encomenda_8h.html#aab192e069929606fb5e354e1a7059d20", null ],
+    [ "checkEncomendas", "encomenda_8h.html#a65e061c9e52090d19aae0beefcb612f3", null ],
+    [ "criarEncomenda", "encomenda_8h.html#a9a1e760549cbddeacc87fc6707eb25f0", null ],
+    [ "escreverFicheiroEncomendas", "encomenda_8h.html#a24917e6e88115df7002eb130eac303db", null ],
+    [ "lerFicheiroEncomendas", "encomenda_8h.html#a42f2c3578ccda381b4f5697c0311c9b1", null ],
+    [ "limparEncomendaTemp", "encomenda_8h.html#a1f690c2ce0bcac806c9ff3ed354e9d0c", null ],
+    [ "listarEncomendas", "encomenda_8h.html#aec71efdbca6956c9a6a766092df32ad5", null ],
+    [ "listarEncomendasCliente", "encomenda_8h.html#a5fe4ae9910a3b7396e8e122e2d778912", null ],
+    [ "materiaisSemana", "encomenda_8h.html#a8990d01c2376db974c66b8a9dc2216ab", null ],
+    [ "top5MateriaisMaisUsados", "encomenda_8h.html#a33bd864d5161a14073b81396adece75c", null ],
+    [ "verificarEncomendasMovel", "encomenda_8h.html#ace409dd1a7dc49e152f36b47345b7e09", null ]
+];
