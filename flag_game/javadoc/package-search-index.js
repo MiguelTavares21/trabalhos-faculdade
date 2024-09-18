@@ -1,0 +1,1 @@
+packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"l":"projeto_ed.Exceptions"},{"l":"projeto_ed.Game"},{"l":"projeto_ed.Graphs"},{"l":"projeto_ed.Heaps"},{"l":"projeto_ed.Lists"},{"l":"projeto_ed.MapsManagement"},{"l":"projeto_ed.Nodes"},{"l":"projeto_ed.Queues"},{"l":"projeto_ed.Stacks"},{"l":"projeto_ed.Trees"}];updateSearchResults();
