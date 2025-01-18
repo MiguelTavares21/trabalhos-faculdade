@@ -1,0 +1,17 @@
+<div class="modal-overlay" (click)="closeModal()">
+  <div class="modal-container" (click)="stopPropagation($event)">
+    <h2 class="modal-title">Adicionar Produto</h2>
+    <ul *ngIf="products.length > 0; else noProducts">
+      <li
+        *ngFor="let product of products"
+        class="product-item"
+        (click)="addProduct(product)"
+      >
+        {{ product.name }}
+      </li>
+    </ul>
+    <ng-template #noProducts>
+      <p>Nenhum produto encontrado.</p>
+    </ng-template>
+  </div>
+</div>

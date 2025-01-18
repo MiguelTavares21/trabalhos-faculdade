@@ -1,0 +1,108 @@
+<div class="modal-overlay">
+    <div class="alerts-container">
+        <app-alerts [alerts]="alerts" (alertClosed)="removeAlert($event)"></app-alerts>
+    </div>
+    <div class="modal-content" (click)="$event.stopPropagation()">
+        <h2 *ngIf="!isNewRecipe">Editar Receita</h2>
+        <h2 *ngIf="isNewRecipe">Adicionar Ingredientes</h2>
+        <button (click)="closePopup()" class="close">X</button>
+
+        <div class="recipeName" *ngIf="!isNewRecipe">
+            <label for="recipe-name">Nome da Receita:</label>
+            <div class="input-container">
+                <input id="recipe-name" type="text" [(ngModel)]="updatedRecipeName"
+                    placeholder="Insira o novo nome da receita" />
+                    <div class="tooltip-container">
+                        <img src="mark.png" alt="Guardar" class="mark-icon" (click)="changeRecipeName()" />
+                        <span class="tooltip-text">Alterar nome</span>
+                    </div>
+            </div>
+        </div>
+
+        <div class="recipeProducts">
+            <label for="recipe-products">Ingredientes:</label>
+            <div *ngIf="productsInRecipe && productsInRecipe.length > 0" class="product-grid">
+                <div *ngFor="let product of productsInRecipe" class="product-container">
+                    <p class="productName">{{ product.name }}</p>
+                    <p class="productQuantity">{{ product.quantity }}</p>
+                    <p class="productUnity">{{ product.unity }}</p>
+                    <div class="tooltip-container">
+                        <img src="edit.png" alt="Editar" class="edit-icon" (click)="openEditProductPopup(product.name, product.quantity, product.unity)" />
+                        <span class="tooltip-text">Editar produto</span>
+                    </div>
+                    <div class="tooltip-container">
+                        <img src="x.png" alt="Remover" class="remove-icon" (click)="removerProduto(product.productId)" />
+                        <span class="tooltip-text">Remover produto</span>
+                    </div>
+                </div>
+            </div>
+            <div *ngIf="productsInRecipe.length === 0" class="product-container-noRecipes">
+                <p>Esta receita não tem nenhum ingrediente associado</p>
+            </div>
+            <div class="addProductButton">
+                <button type="button" class="btn-add" (click)="openAddProductPopup()">
+                    Adicionar ingrediente
+                </button>
+            </div>
+        </div>
+
+        <div *ngIf="addToggle" class="addProductForm">
+            <form id="addProductToRecipe" (ngSubmit)="adicionarProduto()" [formGroup]="addProductToRecipe"
+                class="form-box">
+                <div class="content">
+                    <div class="productToAddName">
+                        <label for="name">Nome do Produto</label>
+                        <div class="input-container">
+                            <select formControlName="name" id="name" class="form-control" required>
+                                <option value="" disabled selected>Selecione um produto</option>
+                                <option *ngFor="let product of productsInGroup" [value]="product.name">
+                                    {{ product.name }}
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="productToAddQuantity">
+                        <label for="quantity">Quantidade necessária</label>
+                        <div class="input-container">
+                            <input type="number" formControlName="quantity" class="form-control" id="quantity" required />
+                            <div *ngIf="selectedProduct" class="product-unity">
+                                <p>{{ selectedProduct.unity }}</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="buttons">
+                        <button type="submit" class="btn-submit">Adicionar</button>
+                        <button type="button" class="btn-cancel" (click)="closeAddProductPopup()">
+                            Cancelar
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div *ngIf="editToggle" class="editProductForm">
+            <form id="editProductInRecipe" (ngSubmit)="editarProduto()" [formGroup]="editProductInRecipe" class="form-box">
+                <div class="content">
+                    <div class="productToEditName">
+                        <label for="name">Nome do Produto:</label>
+                        <span id="name" class="nameEdit">{{ editProductInRecipe.get('name')?.value }}</span>
+                    </div>
+                    <div class="productToEditUnity">
+                        <label for="unity">Unidade:</label>
+                        <span id="unity">{{ editProductInRecipe.get('unity')?.value }}</span>
+                    </div>
+                    <div class="productToEditQuantity">
+                        <label for="quantity">Nova quantidade:</label>
+                        <div class="input-container">
+                            <input type="number" formControlName="quantity" class="form-control" id="quantity" required />
+                        </div>
+                    </div>
+                    <div class="buttons">
+                        <button type="submit" class="btn-submit">Confirmar</button>
+                        <button type="button" class="btn-cancel" (click)="closeEditProductPopup()">Cancelar</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+    </div>
+</div>

@@ -1,0 +1,9 @@
+<div class="initial-page-container">
+  <div class="content">
+    <div class="buttons-container">
+      <button (click)="goToCreateGroup()">Criar um grupo</button>
+      <button (click)="openPopup()">Juntar-se a um grupo</button>
+    </div>
+  </div>
+  <app-join-group *ngIf="isPopupOpen" (close)="closePopup()"></app-join-group>
+</div>

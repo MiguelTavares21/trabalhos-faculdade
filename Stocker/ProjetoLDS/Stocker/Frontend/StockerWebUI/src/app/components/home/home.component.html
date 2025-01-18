@@ -1,0 +1,28 @@
+<div class="main">
+  <h1>OS MEUS GRUPOS</h1>
+  <img
+    src="add.png"
+    alt="Adicionar"
+    class="add-icon"
+    (click)="navigateToInitialPage()"
+  />
+</div>
+<div *ngIf="groups">
+  <div class="home-container">
+    <div
+      *ngFor="let group of groups"
+      class="card"
+      (click)="navigateToGroup(group.id)"
+    >
+      <strong class="name">{{ group.name }}</strong>
+      <p class="descricao">{{ group.description }}</p>
+      <img class="img2" src="grupo2.png" alt="" />
+      <p>CÓDIGO PARA ENTRAR NO GRUPO</p>
+      <span class="access-code">{{ group.access_code }}</span>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="groups.length === 0">
+  <p class="text">Neste momento não se encontra associado a nenhum grupo</p>
+</div>

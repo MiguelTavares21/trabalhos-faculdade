@@ -1,0 +1,107 @@
+<div class="modal-overlay" (click)="closeModal()"></div>
+<div class="modal-container">
+  <h2 class="modal-title">EDITAR PRODUTO</h2>
+
+  <form [formGroup]="editProductForm" (ngSubmit)="onSubmit()">
+    <div class="modal-body">
+      <!-- Campo Nome -->
+      <label for="name">NOME</label>
+      <input
+        id="name"
+        type="text"
+        formControlName="name"
+        placeholder="Digite o nome do produto"
+      />
+      <div
+        *ngIf="editProductForm.get('name')?.invalid && editProductForm.get('name')?.touched"
+      >
+        <small class="error">Nome é obrigatório</small>
+      </div>
+
+      <!-- Campo Quantidade (Somente Visualização) -->
+      <label for="quantity">
+        QUANTIDADE
+      </label>
+      <input
+        id="quantity"
+        type="number"
+        [value]="editProductForm.get('quantity')?.value"
+        formControlName="quantity"
+        placeholder="Quantidade disponível"
+        step="0.01"
+      />
+      <div *ngIf="editProductForm.get('quantity')?.invalid && editProductForm.get('quantity')?.touched" class="invalid-feedback">
+        <span *ngIf="editProductForm.get('quantity')?.errors?.['required']">Quantidade é obrigatória.</span>
+        <span *ngIf="editProductForm.get('quantity')?.errors?.['min']">Quantidade não pode ser negativa.</span>
+      </div>
+
+      <!-- Campos Ponto de Encomenda e Valor Ideal -->
+      <div class="row-fields">
+        <div class="field-group">
+          <label for="order-point">
+            PONTO DE ENCOMENDA
+            <span
+              class="info-icon"
+              title="Quantidade mínima de um produto no stock que, ao ser atingida, indica que é hora de adicionar à lista de compras."
+            >
+              <img src="information.png" alt="Informação" />
+            </span>
+          </label>
+          <input
+            id="order-point"
+            type="number"
+            formControlName="order_Point"
+            placeholder="Digite o ponto de encomenda"
+            step="0.01"
+          />
+          <div
+            *ngIf="editProductForm.get('order_Point')?.invalid && editProductForm.get('order_Point')?.touched"
+          >
+            <small class="error">Ponto de encomenda é obrigatório e deve ser maior que 0</small>
+          </div>
+        </div>
+
+        <div class="field-group">
+          <label for="ideal">
+            VALOR IDEAL
+            <span
+              class="info-icon"
+              title="Quantidade que você deseja manter no stock para evitar excesso e desperdício."
+            >
+              <img src="information.png" alt="Informação" />
+            </span>
+          </label>
+          <input
+            id="ideal"
+            type="number"
+            formControlName="ideal_Point"
+            placeholder="Digite o valor ideal"
+            step="0.01"
+          />
+          <div
+            *ngIf="editProductForm.get('ideal_Point')?.invalid && editProductForm.get('ideal_Point')?.touched"
+          >
+            <small class="error">Valor ideal é obrigatório e deve ser maior que 0</small>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Botões de Ação -->
+    <div class="modal-footer">
+      <button
+        class="btn-save"
+        type="submit"
+        [disabled]="editProductForm.invalid"
+      >
+        GUARDAR
+      </button>
+      <button class="btn-cancel" type="button" (click)="closeModal()">
+        CANCELAR
+      </button>
+      <button class="btn-delete" type="button" (click)="deleteProduct()">
+        ELIMINAR PRODUTO
+      </button>
+    </div>
+  </form>
+</div>

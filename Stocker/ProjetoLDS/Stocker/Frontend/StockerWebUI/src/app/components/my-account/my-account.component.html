@@ -1,0 +1,50 @@
+<div class="account-container">
+  <app-alerts [alerts]="alerts" (alertClosed)="removeAlert($event)"></app-alerts>
+  <h2>CONTA PESSOAL</h2>
+  <p>Total de grupos pertencentes: {{ totalGroups }}</p>
+
+  <form [formGroup]="editForm" class="form-box">
+    <label for="name">Nome</label>
+    <input type="text" formControlName="name" id="name" required />
+
+    <label for="email">Email</label>
+    <input type="email" formControlName="email" id="email" required />
+    
+    <div class="notification">
+      <label for="notifications">Notificações</label>
+      <label class="switch">
+        <input
+          type="checkbox"
+          formControlName="notifications"
+          id="notifications"
+        />
+        <span class="slider"></span>
+      </label>
+    </div>
+    
+    <button type="submit" class="btn-submit" (click)="confirmSaveDetails()">Salvar Alterações</button>
+  </form>
+
+  <hr />
+
+  <!-- Botão para editar a senha -->
+  <div class="buttons">
+    <button (click)="togglePasswordForm()" class="btn-submit">Editar password</button>
+  </div>
+
+  <!-- Formulário de atualização de senha (inicialmente escondido) -->
+  <div *ngIf="showPasswordForm">
+    <form [formGroup]="passwordForm"  class="form-box">
+      <label for="passAtual">Senha Atual</label>
+      <input type="password" formControlName="passAtual" id="passAtual" required />
+
+      <label for="novaPass">Nova Senha</label>
+      <input type="password" formControlName="novaPass" id="novaPass" required />
+
+      <label for="confirmPass">Confirmar Nova Senha</label>
+      <input type="password" formControlName="confirmPass" id="confirmPass" required />
+
+      <button type="submit" class="btn-submit" (click)="confirmUpdatePassword()">Atualizar Senha</button>
+    </form>
+  </div>
+</div>

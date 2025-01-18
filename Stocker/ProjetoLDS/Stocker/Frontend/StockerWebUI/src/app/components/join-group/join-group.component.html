@@ -1,0 +1,13 @@
+<div class="popup">
+  <button (click)="closePopup()" class="close">X</button>
+  <h2><img src="porta.png" alt="" />ENTRAR NUM GRUPO</h2>
+  <div>
+    <label for="codigo">INSERIR CÓDIGO</label>
+    <input id="accessCode" [(ngModel)]="accessCode" type="text" required />
+    <p *ngIf="errorMessage" class="error-message">{{ errorMessage }}</p>
+  </div>
+  <div class="buttons">
+    <button type="submit" (click)="joinGroup()" class="btn-submit">ENTRAR</button>
+  </div>
+</div>
+

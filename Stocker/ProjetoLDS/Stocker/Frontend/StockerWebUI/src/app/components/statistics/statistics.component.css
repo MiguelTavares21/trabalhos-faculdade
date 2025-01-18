@@ -1,0 +1,211 @@
+.main-content {
+  flex: 1;
+  background-color: #212f3d;
+  overflow-y: auto;
+}
+
+h2 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  margin-top: 30px;
+  font-family: Arial, sans-serif;
+  position: relative;
+}
+
+h3 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  margin-top: 10px;
+  font-family: Arial, sans-serif;
+  position: relative;
+}
+
+.consumption-content-container {
+  background-color: #2c3e50;
+  padding: 5px;
+  padding-bottom: 20px;
+  margin: 30px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.chart-controls-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+  margin: 30px;
+}
+
+select {
+  width: 100%;
+  max-width: 300px;
+  padding: 10px;
+  font-size: 16px;
+  font-family: Arial, sans-serif;
+  color: #ffffff;
+  background-color: #1b2838;
+  border: 1px solid #4a6572;
+  border-radius: 5px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  outline: none;
+  appearance: none;
+  cursor: pointer;
+}
+
+select:after {
+  content: "\25BC";
+  position: absolute;
+  right: 15px;
+  pointer-events: none;
+}
+
+select:hover,
+select:focus {
+  background-color: #253746;
+  border-color: #66afe9;
+  box-shadow: 0 0 5px #66afe9;
+}
+
+.date-inputs-container {
+  display: flex;
+  gap: 10px;
+  flex: 1;
+}
+
+input[type="date"] {
+  flex: 1;
+  padding: 10px;
+  font-size: 16px;
+  font-family: Arial, sans-serif;
+  color: #ffffff;
+  background-color: #1b2838;
+  border: 1px solid #4a6572;
+  border-radius: 5px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  outline: none;
+  appearance: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+input[type="date"]:hover,
+input[type="date"]:focus {
+  background-color: #253746;
+  border-color: #66afe9;
+  box-shadow: 0 0 5px #66afe9;
+}
+
+label {
+  color: #ffffff;
+  font-size: 16px;
+  margin-bottom: 5px;
+  font-family: Arial, sans-serif;
+}
+
+.chart-container {
+  width: 80%;
+  margin: auto;
+}
+
+canvas {
+  max-height: 400px;
+}
+
+.controls-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+  margin: 30px;
+}
+
+.content-container {
+  padding-left: 20px;
+  background-color: #2c3e50;
+  padding: 5px;
+  padding-bottom: 20px;
+  margin: 30px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.category-controls-container {
+  margin-bottom: 20px;
+}
+
+.date-inputs-container {
+  display: flex;
+  gap: 20px;
+}
+
+.stat-card {
+  background-color: #f9f9f9;
+  padding: 15px;
+  margin: 10px;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  width: 200px;
+}
+
+.stat-card span {
+  font-size: 16px;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.stats-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.no-data-message {
+  color: #e74c3c;
+  font-size: 16px;
+  font-weight: bold;
+  text-align: center;
+  margin-top: 20px;
+}
+
+.not-selected-message {
+  color: orange;
+  font-size: 16px;
+  font-weight: bold;
+  text-align: center;
+  margin-top: 20px;
+}
+
+.alerts-container {
+  position: fixed;
+  bottom: 15%;
+  transform: translateX(-50%);
+  z-index: 1000;
+  padding: 10px;
+  left: 61.5%;
+  text-align: center;
+  border-radius: 5px;
+  width: 100%;
+}
+
+@media (max-width: 768px) {
+  .chart-controls-container {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .date-inputs-container {
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+  }
+}

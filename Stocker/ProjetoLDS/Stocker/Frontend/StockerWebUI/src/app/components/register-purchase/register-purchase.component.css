@@ -1,0 +1,44 @@
+.add {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  margin-left: 10px;
+}
+
+.button img {
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
+}
+
+.button:hover img {
+  transform: scale(1.1);
+  transition: transform 0.3s ease;
+}
+
+.product-price {
+  font-size: 18px;
+  font-weight: bold;
+  margin-left: 10px;
+}
+
+.saveButton {
+  background-color: #1a2631;
+  margin-top: 16px;
+  margin-bottom: 0px;
+  color: white;
+  font-weight: bold;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.saveButton:hover {
+  background-color: #121a21;
+}

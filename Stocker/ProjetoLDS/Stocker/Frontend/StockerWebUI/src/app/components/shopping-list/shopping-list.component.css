@@ -1,0 +1,25 @@
+.quantity-unit {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.product-body {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.delete {
+  background-color: transparent;
+  border: none;
+  padding-top: 3px;
+  cursor: pointer;
+  margin-left: 30px;
+}
+
+.delete:hover {
+  background-color: #b0b7c2;
+  border-radius: 30%;
+  transform: scale(1.1);
+}

@@ -1,0 +1,80 @@
+<div class="layout">
+  <nav class="sidebar">
+    <header>
+      <div class="user-email-topbar">
+        <span *ngIf="!loading" routerLink="/my-account"> {{ userName }} </span>
+        <span *ngIf="!loading" class="opacity email" routerLink="/my-account">{{
+          userEmail
+        }}</span>
+      </div>
+      <div class="shopping-cart-insert">
+        <img
+          routerLink="/register-purchase"
+          src="shopping-cart.png"
+          alt=""
+          width="30"
+        />
+        <span>REGISTAR COMPRA</span>
+      </div>
+    </header>
+    <section>
+      <ul>
+        <li routerLink="/group">
+          <img src="home.png" alt="" width="20" />
+          <span>ÍNICIO</span>
+        </li>
+        <li routerLink="/my-groups">
+          <img src="group_sidebar.png" alt="" width="20" />
+          <span>OS MEUS GRUPOS</span>
+        </li>
+        <li routerLink="/inventory">
+          <img src="box.png" alt="" width="20" />
+          <span>INVENTÁRIO</span>
+        </li>
+        <li routerLink="/shopping-list">
+          <img src="list.png" alt="" width="20" />
+          <span>A MINHA LISTA</span>
+        </li>
+        <li routerLink="/recipeList">
+          <img src="recipe.png" alt="" width="20" />
+          <span>AS MINHAS RECEITAS</span>
+        </li>
+        <li routerLink="/shopping-history">
+          <img src="history.png" alt="" width="20" />
+          <span>HISTÓRICO DE COMPRAS</span>
+        </li>
+        <li routerLink="/product-types">
+          <img src="products.png" alt="" width="20" />
+          <span>PRODUTOS</span>
+        </li>
+        <li routerLink="/statistics">
+          <img src="statistics.png" alt="" width="20" />
+          <span>ESTATÍSTICAS</span>
+        </li>
+        <hr class="opacity" />
+        <li (click)="toggleNotifications()">
+          <img
+            *ngIf="!loading && !user.notifications"
+            src="bell.png"
+            alt=""
+            width="20"
+          />
+          <img
+            *ngIf="!loading && user.notifications"
+            src="active_bell.png"
+            alt=""
+            width="20"
+          />
+          <span>NOTIFICAÇÕES</span>
+        </li>
+        <li (click)="logout()">
+          <img src="logout.png" alt="Logout" width="20" />
+          <span>SAIR</span>
+        </li>
+      </ul>
+    </section>
+  </nav>
+  <div class="content">
+    <router-outlet></router-outlet>
+  </div>
+</div>

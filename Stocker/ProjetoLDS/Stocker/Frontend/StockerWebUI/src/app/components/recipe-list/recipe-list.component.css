@@ -1,0 +1,255 @@
+.main-content {
+  flex: 1;
+  background-color: #212f3d;
+  overflow-y: auto;
+}
+
+.header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 30px;
+}
+
+h2 {
+  color: white;
+  margin-right: 10px;
+  font-family: Arial, sans-serif;
+}
+
+.add-icon {
+  cursor: pointer;
+  width: 35px;
+  height: 35px;
+}
+
+.content-container {
+  gap: 15px;
+  padding: 30px;
+  padding-bottom: 0%;
+  width: 100%;
+  display: grid;
+}
+
+.search-filter-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.search-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 30px;
+  padding-bottom: 0%;
+  width: 100%;
+}
+
+.search-bar {
+  width: 50%;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  outline: none;
+  transition: box-shadow 0.3s ease;
+}
+
+.search-bar:focus {
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.8);
+  border-color: #007bff;
+}
+
+.filter-button-container {
+  position: relative;
+}
+
+.filter-button {
+  padding: 8px 16px;
+  font-size: 14px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  background-color: #007bff;
+  color: white;
+  transition: background-color 0.3s ease;
+}
+
+.filter-button:hover {
+  background-color: #0056b3;
+}
+
+.filter-dropdown {
+  display: none;
+  position: absolute;
+  top: 110%;
+  left: 0;
+  z-index: 1000;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 10px;
+  width: 200px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.filter-dropdown.show {
+  display: block;
+}
+
+#ingredientFilter {
+  width: 100%;
+  padding: 5px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  outline: none;
+  background-color: #fff;
+  color: #333;
+  margin-top: 5px;
+}
+
+.recipe-grid {
+  display: grid;
+  gap: 15px;
+  padding: 30px;
+  width: 100%;
+}
+
+.recipe {
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+  display: flex;
+  align-items: center;
+}
+
+.card {
+  background-color: #f4f4f4;
+  border-radius: 8px;
+  padding: 20px;
+  text-align: start;
+  cursor: pointer;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s, box-shadow 0.2s;
+  width: 98%;
+  margin-right: 1%;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.consume-icon {
+  position: relative;
+  cursor: pointer;
+  width: 35px;
+  height: 35px;
+  margin-right: 1%;
+}
+
+.remove-icon {
+  position: relative;
+  cursor: pointer;
+  width: 30px;
+  height: 30px;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+}
+
+.name {
+  font-weight: bold;
+  color: #2c3e50;
+  flex-grow: 1;
+}
+
+.status {
+  display: inline;
+  text-align: end;
+  font-size: 14px;
+  font-weight: bold;
+  margin-top: auto;
+}
+
+.available {
+  color: #27ae60;
+}
+
+.unavailable {
+  color: #e74c3c;
+}
+
+.notFound {
+  padding: 20px;
+  text-align: center;
+  color: white;
+}
+
+.tooltip-container-add {
+  cursor: pointer;
+  width: 35px;
+  height: 35px;
+}
+
+.tooltip-container-consume {
+  position: relative;
+  cursor: pointer;
+  width: 35px;
+  height: 35px;
+  margin-right: 1%;
+}
+
+.tooltip-container-remove {
+  position: relative;
+  cursor: pointer;
+  width: 30px;
+  height: 30px;
+}
+
+.tooltip-text {
+  visibility: hidden;
+  background-color: #333;
+  color: #fff;
+  text-align: center;
+  padding: 5px;
+  border-radius: 4px;
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  white-space: nowrap;
+  font-size: 12px;
+  z-index: 1;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.tooltip-container-add:hover .tooltip-text {
+  visibility: visible;
+  opacity: 1;
+}
+
+.tooltip-container-consume:hover .tooltip-text {
+  visibility: visible;
+  opacity: 1;
+}
+
+.tooltip-container-remove:hover .tooltip-text {
+  visibility: visible;
+  opacity: 1;
+}
+
+.alerts-container {
+  position: fixed;
+  bottom: 15%;
+  transform: translateX(-50%);
+  z-index: 1000;
+  padding: 10px;
+  left: 61.5%;
+  text-align: center;
+  border-radius: 5px;
+  width: 100%;
+}

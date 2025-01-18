@@ -1,0 +1,56 @@
+<app-alerts [alerts]="alerts" (alertClosed)="removeAlert($event)"></app-alerts>
+<div class="product-list-container">
+  <h1 class="title">REGISTAR UMA COMPRA</h1>
+  <div class="add">
+    <button class="button" (click)="openModal()">
+      <img src="add-product-icon.png" alt="Adicionar Produto" />
+    </button>
+    <button class="button" (click)="openCreateModal()">
+      <img src="add.png" alt="Criar Produto" />
+    </button>
+  </div>
+
+  <ul *ngIf="products.length > 0; else noProducts" class="products-list">
+    <li *ngFor="let product of products" class="product-item">
+      <div class="product-body">
+        <h2 class="product-name">{{ product.name }}</h2>
+        <div class="quantity-unit">
+          <strong class="product-quantity">{{ product.quantity }}</strong>
+          <span class="product-unity">{{ product.unity }}</span>
+          <strong class="product-price">{{ product.price }}€</strong>
+          <button class="delete" (click)="removeFromList(product.product_Id)">
+            <img src="delete.png" alt="Diminuir Quantidade" width="13" />
+          </button>
+        </div>
+      </div>
+    </li>
+  </ul>
+
+  <ng-template #noProducts>
+    <p>Nenhum produto adicionado.</p>
+  </ng-template>
+
+  <div *ngIf="products.length > 0" class="add">
+    <button class="button saveButton" (click)="savePurchase()">
+      <span>GUARDAR</span>
+    </button>
+  </div>
+
+  <add-product-modal
+    *ngIf="isModalOpen"
+    (onAdd)="addProductToList($event)"
+    (onClose)="closeModal()"
+    [products]="allProducts"
+  ></add-product-modal>
+  <app-product-modal
+    *ngIf="isCreateModalOpen"
+    (onSave)="handleCreateProduct($event)"
+    (onClose)="closeCreateModal()"
+    [disableQuantity]="true"
+  ></app-product-modal>
+  <app-purchase-modal
+    *ngIf="isPurchaseModalOpen"
+    (onSave)="handlePurchase($event)"
+    (onClose)="closePurchaseModal()"
+  ></app-purchase-modal>
+</div>

@@ -1,0 +1,49 @@
+stages:
+  - setup
+  - test
+  - build
+
+services:
+  - docker:dind
+
+variables:
+  DOCKER_DRIVER: overlay2
+
+test_backend:
+  stage: test
+  image: mcr.microsoft.com/dotnet/sdk:8.0
+  script:
+    - cd Backend/StockerAPI/StockerTests
+    - dotnet restore
+    - dotnet test
+
+install:
+  stage: setup
+  image: node:20.18.1-bullseye
+  script:
+    - cd Frontend/StockerWebUI
+    - rm -rf node_modules package-lock.json
+    - npm install
+
+test_frontend_angular:
+  stage: test
+  image: node:20.18.1-bullseye
+  before_script: 
+    - apt-get update
+    - wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+    - apt install -y ./google-chrome*.deb;
+    - export CHROME_BIN=/usr/bin/google-chrome
+  script:
+    - cd Frontend/StockerWebUI
+    - npm ci || npm install
+    - npm run test -- --watch=false --browsers=ChromeHeadlessCI --silent
+    
+build:
+  stage: build
+  image: mcr.microsoft.com/dotnet/sdk:8.0
+  script:
+    - cd Backend/StockerAPI/StockerAPI
+    - dotnet restore
+    - dotnet build
+  dependencies:
+    - test_backend

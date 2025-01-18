@@ -1,0 +1,132 @@
+.account-container {
+  color: white;
+  margin: 5px auto;
+  padding: 20px;
+  width: 70%;
+}
+
+h2 {
+  text-align: center;
+  font-size: 2em;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+p {
+  font-size: 1.2em;
+  margin-bottom: 15px;
+  text-align: center;
+}
+
+.form-box {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+label {
+  font-weight: bold;
+  color: white;
+  margin-right: 10px;
+}
+
+input {
+  padding: 10px 13px;
+  border-radius: 8px;
+  font-size: 16px;
+  color: #333;
+  transition: all 0.3s ease-in-out;
+}
+
+.buttons {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+input:focus {
+  border-color: #007bff;
+  background-color: #e6f0ff;
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+  outline: none;
+}
+
+input:hover {
+  border-color: #888;
+  background-color: #f1f1f1;
+}
+
+.buttons {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.btn-submit {
+  background: none;
+  font-family: sans-serif;
+  border: none;
+  color: white;
+  font-size: 1.1em;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.btn-submit:hover {
+  text-decoration: underline;
+}
+
+hr {
+  margin: 15px 0;
+}
+
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 35px;
+  height: 20px;
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  transition: 0.5s;
+  border-radius: 35px;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 14px;
+  width: 14px;
+  left: 3px;
+  bottom: 3px;
+  background-color: white;
+  transition: 0.4s;
+  border-radius: 50%;
+}
+
+input:checked + .slider {
+  background-color: #2196f3;
+}
+
+input:checked + .slider:before {
+  transform: translateX(15px);
+}
+
+@media only screen and (max-width: 800px) {
+    .account-container {
+        width: 100%;
+    }
+}

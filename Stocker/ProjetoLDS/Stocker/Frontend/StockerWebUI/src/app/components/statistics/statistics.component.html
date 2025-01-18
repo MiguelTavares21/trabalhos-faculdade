@@ -1,0 +1,204 @@
+<div class="main-content">
+    <h2>ESTATÍSTICAS</h2>
+
+    <div class="alerts-container">
+        <app-alerts [alerts]="alerts" (alertClosed)="removeAlert($event)"></app-alerts>
+    </div>
+
+    <div class="charts-wrapper">
+        <div class="consumption-content-container">
+            <h3>Estatísticas de consumo</h3>
+            <div class="chart-controls-container">
+                <select id="chartType" [(ngModel)]="selectedConsumptionChart" (change)="updateConsumptionChart()">
+                    <option value="piechart">Pie Chart</option>
+                    <option value="barchart">Bar Chart</option>
+                    <option value="doughnutchart">Doughnut Chart</option>
+                    <option value="polarchart">Polar Chart</option>
+                    <option value="radarchart">Radar Chart</option>
+                    <option value="linechart">Line Chart</option>
+                </select>
+
+                <div class="date-inputs-container">
+                    <div>
+                        <label for="startDate">De </label>
+                        <input type="date" id="startDate" [(ngModel)]="startDateConsumption"
+                            (change)="updateConsumptionChart()" />
+                    </div>
+
+                    <div>
+                        <label for="endDate">a </label>
+                        <input type="date" id="endDate" [(ngModel)]="endDateConsumption"
+                            (change)="updateConsumptionChart()" />
+                    </div>
+                </div>
+            </div>
+
+            <div class="chart-container">
+                <canvas #consumptionChartCanvas style="width: 100%;"></canvas>
+            </div>
+        </div>
+
+        <div class="content-container">
+            <h3>Estatísticas de gastos</h3>
+            <div class="controls-container">
+                <div class="date-inputs-container">
+                    <div>
+                        <label for="startDate">De </label>
+                        <input type="date" id="startDate" [(ngModel)]="startDateTotalSpent"
+                            (change)="fetchExpensesStatsData()" />
+                    </div>
+
+                    <div>
+                        <label for="endDate">a </label>
+                        <input type="date" id="endDate" [(ngModel)]="endDateTotalSpent"
+                            (change)="fetchExpensesStatsData()" />
+                    </div>
+                </div>
+            </div>
+
+            <div class="stats-container">
+                <ng-template
+                    [ngIf]="expensesData.totalSpent === 0 && expensesData.totalPurchases === 0 && expensesData.averageSpent=== 0">
+                    <p class="no-data-message">Não foram encontrados dados para o intervalo selecionado!</p>
+                </ng-template>
+                <ng-template
+                    [ngIf]="expensesData.totalSpent > 0 && expensesData.totalPurchases > 0 && expensesData.averageSpent > 0">
+                    <div class="stat-card">
+                        <span>Total gasto:</span>
+                        <p>{{ expensesData.totalSpent | currency:'EUR' }}</p>
+                    </div>
+                    <div class="stat-card">
+                        <span>Compras registadas:</span>
+                        <p>{{ expensesData.totalPurchases }} compras</p>
+                    </div>
+                    <div class="stat-card">
+                        <span>Gasto médio:</span>
+                        <p>{{ expensesData.averageSpent | currency:'EUR' }}</p>
+                    </div>
+                </ng-template>
+            </div>
+        </div>
+
+        <div class="content-container">
+            <h3>Estatísticas de gasto por categoria de produto</h3>
+            <div class="controls-container">
+                <select class="selectContainer" id="type" [(ngModel)]="selectedType" (change)="onTypeChange()">
+                    <option value="" disabled>Escolha a categoria</option>
+                    <option *ngFor="let type of typeLabels | keyvalue" [value]="type.key">
+                        {{ type.value }}
+                    </option>
+                </select>
+                <small class="error" *ngIf="!selectedType && touchedType">Tipo é obrigatório</small>
+
+                <div class="date-inputs-container">
+                    <div>
+                        <label for="startDate">De </label>
+                        <input type="date" id="startDate" [(ngModel)]="startDateCategory"
+                            (ngModelChange)="fetchTypeStatsData()" />
+                    </div>
+
+                    <div>
+                        <label for="endDate">a </label>
+                        <input type="date" id="endDate" [(ngModel)]="endDateCategory"
+                            (ngModelChange)="fetchTypeStatsData()" />
+                    </div>
+                </div>
+            </div>
+
+            <div class="stats-container">
+                <ng-template
+                    [ngIf]="categoryData.totalSpent === 0 && categoryData.totalQuantity === 0 && categoryData.totalPurchases === 0 && categoryData.averageSpent === 0">
+                    <p class="no-data-message">Não foram encontrados dados para o intervalo selecionado!</p>
+                </ng-template>
+
+                <ng-template
+                    [ngIf]="categoryData.totalSpent > 0 && categoryData.totalQuantity > 0 && categoryData.totalPurchases > 0 && categoryData.averageSpent > 0">
+                    <div class="stat-card">
+                        <span>Tipo de Produto:</span>
+                        <p>{{ categoryData.productType || 'Não selecionado' }}</p>
+                    </div>
+                    <div class="stat-card">
+                        <span>Total gasto:</span>
+                        <p>{{ categoryData.totalSpent | currency:'EUR' }}</p>
+                    </div>
+                    <div class="stat-card">
+                        <span>Total comprado:</span>
+                        <p>{{ categoryData.totalQuantity }} itens</p>
+                    </div>
+                    <div class="stat-card">
+                        <span>Vezes comprado:</span>
+                        <p>{{ categoryData.totalPurchases }} compras</p>
+                    </div>
+                    <div class="stat-card">
+                        <span>Gasto médio:</span>
+                        <p>{{ categoryData.averageSpent | currency:'EUR' }}</p>
+                    </div>
+                </ng-template>
+            </div>
+        </div>
+
+        <div class="content-container">
+            <h3>Estatísticas de gasto por produto</h3>
+            <div class="controls-container">
+                <select class="selectContainer" id="type" [(ngModel)]="selectedProduct"
+                    (change)="fetchProductStatsData()">
+                    <option value="" disabled>Escolha o produto</option>
+                    <option *ngFor="let product of products" [ngValue]="product">
+                        {{ product.name }}
+                    </option>
+                </select>
+
+
+
+                <div class="date-inputs-container">
+                    <div>
+                        <label for="startDate">De </label>
+                        <input type="date" id="startDate" [(ngModel)]="startDateProduct"
+                            (change)="fetchProductStatsData()" />
+                    </div>
+
+                    <div>
+                        <label for="endDate">a </label>
+                        <input type="date" id="endDate" [(ngModel)]="endDateProduct"
+                            (change)="fetchProductStatsData()" />
+                    </div>
+                </div>
+            </div>
+
+            <div class="stats-container">
+                <ng-template
+                    [ngIf]="productData.totalSpent === 0 && productData.totalQuantity === 0 && productData.totalPurchases === 0 && productData.averageSpentByProduct === 0 && selectedProduct.id !== 0">
+                    <p class="no-data-message">Não foram encontrados dados para o intervalo selecionado!</p>
+                </ng-template>
+
+                <ng-template [ngIf]="selectedProduct.id === 0">
+                    <p class="not-selected-message">Por favor selecione um produto!</p>
+                </ng-template>
+
+                <ng-template
+                    [ngIf]="productData.totalSpent > 0 && productData.totalQuantity > 0 && productData.totalPurchases > 0 && productData.averageSpentByProduct > 0">
+                    <div class="stat-card">
+                        <span>Produto:</span>
+                        <p>{{ selectedProduct.name || 'Não selecionado' }}</p>
+                    </div>
+                    <div class="stat-card">
+                        <span>Total gasto:</span>
+                        <p>{{ productData.totalSpent | currency:'EUR' }}</p>
+                    </div>
+                    <div class="stat-card">
+                        <span>Total comprado:</span>
+                        <p>{{ productData.totalQuantity }} itens</p>
+                    </div>
+                    <div class="stat-card">
+                        <span>Vezes comprado:</span>
+                        <p>{{ productData.totalPurchases }} compras</p>
+                    </div>
+                    <div class="stat-card">
+                        <span>Gasto médio:</span>
+                        <p>{{ productData.averageSpentByProduct | currency:'EUR' }}</p>
+                    </div>
+                </ng-template>
+            </div>
+        </div>
+    </div>
+</div>

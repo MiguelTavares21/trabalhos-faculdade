@@ -1,0 +1,91 @@
+.create-group{
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1000;
+    background-color: #36414d;
+    border-radius: 5px;
+    padding: 20px;
+    width: 700px;
+    max-width: 100%;
+    height: 500px;
+    border: 1px solid white
+}
+
+h2 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    background: none;
+    color: white;
+    font-family: sans-serif;
+    text-align: center;
+  }
+
+  div{
+    padding: 15px;
+}
+
+input {
+    background: none;
+    border: none;
+    width: 100%;
+    color: white;
+    margin-top: 20px;
+    margin-bottom: 30px;
+    border-bottom: 1px solid white;
+}
+
+.buttons {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.btn-submit {
+    margin-top: 30px;
+    background: none;
+    font-family: sans-serif;
+    border: none;
+    color: white;
+    font-size: 1.3em;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.btn-submit:hover {
+    text-decoration: underline;
+}
+
+label {
+    padding: 10px;
+    display: block;
+    color: white;
+    font-family: sans-serif;
+    background: none;
+}
+
+.close {
+    background: none;
+      position: absolute;
+      top: 10px;
+      right: 15px;
+      color: white;
+      font-size: 1.5em;
+      font-weight: bold;
+      border: none;
+      cursor: pointer;
+  }
+  
+  .close:hover {
+      color: rgba(255, 255, 255, 0.1);
+  }
+
+@media (max-width: 600px) {
+    .create-group {
+      width: 90%;
+      padding: 15px; 
+    }
+}

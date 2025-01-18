@@ -1,0 +1,16 @@
+<div class="alert-box" *ngIf="alerts.length > 0">
+  <div
+    *ngFor="let alert of alerts"
+    class="alert"
+    [ngClass]="{
+      'alert-success': alert.includes('.'),
+      'alert-danger': alert.includes('!')
+    }"
+    role="alert"
+  >
+    {{ alert }}
+    <button type="button" class="btn-close" (click)="onRemoveAlert(alert)">
+      <img src="close.png" alt="" width="20"/>
+    </button>
+  </div>
+</div>

@@ -1,0 +1,86 @@
+<app-alerts [alerts]="alerts" (alertClosed)="removeAlert($event)"></app-alerts>
+<div class="login-container">
+  <form
+    id="loginForm"
+    (ngSubmit)="onRegister()"
+    [formGroup]="registerForm"
+    #formDir="ngForm"
+    class="form-box"
+  >
+    <div class="title-box">
+      <h1 class="text">STOCKER</h1>
+      <p class="text subtitle">Gira o seu stock de casa de forma inteligente</p>
+    </div>
+
+    <div class="content">
+      <label for="email">NOME</label>
+      <div class="input-group">
+        <input
+          type="text"
+          formControlName="name"
+          class="form-control"
+          id="name"
+          placeholder="Primeiro último"
+          required
+        />
+      </div>
+
+      <label for="email">EMAIL</label>
+      <div class="input-group">
+        <input
+          type="email"
+          formControlName="email"
+          class="form-control"
+          id="email"
+          placeholder="username@email.com"
+          required
+        />
+      </div>
+
+      <label for="password">PALAVRA-PASSE</label>
+      <div class="input-group password-group">
+        <input
+          type="password"
+          formControlName="password"
+          class="form-control"
+          id="password"
+          placeholder="**********"
+          required
+        />
+        <button
+          type="button"
+          class="toggle-password"
+          id="togglePassword"
+          (click)="togglePasswordVisibility()"
+        >
+          <img *ngIf="passwordVisible" src="open_eye.png" alt="" width="18" />
+          <img *ngIf="!passwordVisible" src="close_eye.png" alt="" width="18" />
+        </button>
+      </div>
+
+      <label for="password">CONFIRMAR PALAVRA-PASSE</label>
+      <div class="input-group password-group">
+        <input
+          type="password"
+          formControlName="passwordConfirmation"
+          class="form-control"
+          id="password"
+          placeholder="**********"
+          required
+        />
+        <button type="button" class="toggle-password-close" id="togglePassword">
+          <img src="close_eye.png" alt="" width="18" />
+        </button>
+      </div>
+
+      <div class="buttons">
+        <button type="submit" class="btn-submit">CRIAR CONTA</button>
+        <span
+          ><a routerLink="/login" class="create-account-link"
+            >ENTRAR NA SUA CONTA</a
+          ></span
+        >
+      </div>
+    </div>
+  </form>
+</div>

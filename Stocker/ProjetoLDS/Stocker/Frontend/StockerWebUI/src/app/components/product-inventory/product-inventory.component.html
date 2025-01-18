@@ -1,0 +1,83 @@
+<div class="product-list-container">
+  <h1>INVENTÁRIO</h1>
+  <div class="alerts-container">
+    <app-alerts
+      [alerts]="alerts"
+      (alertClosed)="removeAlert($event)"
+    ></app-alerts>
+  </div>
+
+  <!-- Barra de busca e botão de adicionar -->
+  <div class="search-and-add">
+    <input
+      type="text"
+      placeholder="Procurar produto..."
+      class="search-bar"
+      [(ngModel)]="searchQuery"
+    />
+    <button class="add-product-button" (click)="openModal()">
+      <img src="add-product-icon.png" alt="Adicionar Produto" />
+    </button>
+  </div>
+
+  <ul *ngIf="products.length > 0; else noProducts" class="products-list">
+    <div
+      *ngFor="let product of getFilteredProducts()"
+      class="product-item"
+      (click)="openEditModal(product)"
+    >
+      <div class="product-header">
+        <!-- Nome do produto à esquerda -->
+        <h2 class="product-name">{{ product.name }}</h2>
+
+        <!-- Quantidade, Unidade e Botão de diminuir à direita -->
+        <div class="quantity-container">
+          <button
+            class="decrease-quantity"
+            (click)="decrementQuantity($event, product)"
+          >
+            <img src="minus.png" alt="Diminuir Quantidade" />
+          </button>
+
+          <span
+            class="product-quantity"
+            (click)="openQuantityModal($event, product)"
+          >
+            {{ product.quantity }}
+          </span>
+
+          <div class="product-body">
+            <span class="product-unity">{{ product.unity }}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </ul>
+
+  <ng-template #noProducts>
+    <p>Nenhum produto encontrado.</p>
+  </ng-template>
+
+  <!-- Modal de adicionar/editar produto -->
+  <app-product-modal
+    *ngIf="isModalOpen"
+    (onSave)="handleCreateProduct($event)"
+    (onClose)="closeModal()"
+  ></app-product-modal>
+
+  <!-- Modal de editar produto -->
+  <app-product-modal-edit
+    *ngIf="isEditModalOpen"
+    [product]="selectedProduct"
+    (onSave)="handleEditProduct($event)"
+    (onClose)="closeEditModal()"
+    (onDelete)="handleDeleteProduct($event)"
+  ></app-product-modal-edit>
+
+  <app-product-modal-consume
+    *ngIf="isConsumeModalOpen"
+    [product]="selectedProduct"
+    (onSave)="handleConsumeProduct($event.quantity)"
+    (onClose)="closeConsumeModal()"
+  ></app-product-modal-consume>
+</div>

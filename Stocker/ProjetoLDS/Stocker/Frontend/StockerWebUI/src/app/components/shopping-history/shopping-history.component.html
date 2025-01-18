@@ -1,0 +1,25 @@
+<app-alerts [alerts]="alerts" (alertClosed)="removeAlert($event)"></app-alerts>
+<div class="product-list-container">
+  <h1 class="title">HISTÓRICO DE COMPRAS</h1>
+  <div *ngIf="!loading">
+    <div *ngFor="let purchase of purchases" class="purchasesBox">
+      <div class="purchaseBox">
+        <span> {{ purchase.date | date : "dd/MM/yyyy" }} </span>
+        <span class="marginTop"> Total Gasto: {{ purchase.price }} </span>
+        <button class="marginTop" (click)="openPurchase(purchase.id)">
+          VER DETALHES
+        </button>
+        <div *ngIf="checkOpenPurchase(purchase.id)" class="products marginTop">
+          <span *ngFor="let product of selectedPurchaseProducts">
+            <span> {{ product.quantity }} {{ product.unity }} </span>
+            <span> {{ product.name }} </span>
+            <span> {{ product.price }}€ </span>
+          </span>
+        </div>
+        <button class="marginTop delete" (click)="delete(purchase.id)">
+          ELIMINAR
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

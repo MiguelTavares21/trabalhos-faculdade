@@ -1,0 +1,16 @@
+<div class="product-types-container">
+  <div class="header-container">
+    <h1 class="title">PRODUTOS</h1>
+  </div>
+
+  <ul class="product-types-list">
+    <li *ngFor="let type of typesArray" class="product-type-item">
+      <div class="product-type-icon">
+        <img [src]="getIconForType(type.key)" [alt]="type.label" />
+      </div>
+      <span class="product-type-label">
+        <a [routerLink]="['/products/', type.key]">{{ type.label }}</a>
+      </span>
+    </li>
+  </ul>
+</div>

@@ -1,0 +1,104 @@
+<div *ngIf="loading" class="loading">
+  <span class="spinner"></span>
+  <p>Carregando informações do grupo...</p>
+</div>
+
+<div *ngIf="error" class="error">
+  <p>{{ error }}</p>
+</div>
+
+<div class="info" *ngIf="!loading && !error">
+  <div class="group">
+    <h1>{{ group.name.toUpperCase() }}</h1>
+    <p class="description">{{ group.description }}</p>
+
+    <div class="details">
+      <div>
+        <p><strong>Código de acesso</strong></p>
+        <br />
+        <p>{{ group.access_code }}</p>
+      </div>
+      <div>
+        <p><strong>Budget</strong></p>
+        <br />
+        <p>{{ group.budget }} €</p>
+      </div>
+      <div>
+        <p><strong>Total de membros</strong></p>
+        <br />
+        <p>{{ users.length }}</p>
+      </div>
+      <div>
+        <p><strong>Seu papel</strong></p>
+        <br />
+        <p>{{ userRole }}</p>
+      </div>
+    </div>
+  </div>
+
+  <hr class="divider" />
+
+  <div class="members">
+    <h2>Membros do Grupo</h2>
+    <div class="headers">
+      <span class="header">Nome</span>
+      <span class="header">Email</span>
+      <span class="header">Role</span>
+    </div>
+    <ul>
+      <li *ngFor="let user of users" class="userInfo">
+        <span class="user-name">{{ user.name }}</span>
+        <span class="user-email">{{ user.email }}</span>
+        <span class="user-role">{{ getRoleDescription(user.role) }}</span>
+        <span class="botoes" *ngIf="user.id !== userId">
+          <button
+            *ngIf="userRole === 'Admin'"
+            class="action-button"
+            (click)="changeRole(user.id)"
+          >
+            Mudar Role
+          </button>
+        </span>
+        <span class="botoes" *ngIf="user.id !== userId">
+          <button
+            *ngIf="userRole === 'Admin'"
+            class="action-button-remove"
+            (click)="removeMember(user.id)"
+          >
+            X
+          </button>
+        </span>
+      </li>
+    </ul>
+  </div>
+
+  <div class="leave-group">
+    <button class="leave-button" (click)="confirmLeaveGroup()">
+      Sair do Grupo
+    </button>
+    <button
+      class="leave-button"
+      *ngIf="userRole == 'Admin'"
+      (click)="confirmDeleteGroup()"
+    >
+      Apagar grupo
+    </button>
+    <button
+      class="edit-button"
+      *ngIf="userRole == 'Admin'"
+      (click)="editGroup()"
+    >
+      Editar grupo
+    </button>
+  </div>
+</div>
+
+<div class="modal" *ngIf="showModal">
+  <div class="modal-content">
+    <p>Tem a certeza?</p>
+    <div class="modal-actions">
+      <button (click)="confirmAction(true)">Sim</button>
+      <button (click)="confirmAction(false)">Não</button>
+    </div>
+  </div>
+</div>

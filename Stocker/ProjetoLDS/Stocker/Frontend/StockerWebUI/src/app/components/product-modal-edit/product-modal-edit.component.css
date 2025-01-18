@@ -1,0 +1,31 @@
+/* Estilo base do botão de eliminação */
+.btn-delete {
+    background-color: #d9534f; 
+    color: #fff; 
+    border: none; 
+    padding: 5px 10px; 
+    font-size: 14px; 
+    border-radius: 5px; /* Bordas arredondadas */
+    cursor: pointer; /* Mostrar o cursor como uma mão */
+    transition: background-color 0.3s ease, transform 0.2s ease; /* Transições suaves */
+    
+    width: auto; /* Garante que o comprimento seja exatamente o necessário para o conteúdo */
+  height: auto; /* Ajusta a altura automaticamente */
+  }
+  
+  /* Efeito quando o botão é clicado (ativo) */
+  .btn-delete:active {
+    transform: scale(0.98); /* Efeito de clique (reduz levemente o tamanho) */
+  }
+  
+  /* Efeito de hover (quando o mouse passa sobre o botão) */
+  .btn-delete:hover {
+    background-color: #c9302c; /* Cor mais escura quando o botão é hover */
+  }
+  
+  /* Efeito de foco (para acessibilidade) */
+  .btn-delete:focus {
+    outline: 2px solid #f1f1f1; /* Destaque do foco */
+    outline-offset: 2px; /* Distância do contorno */
+  }
+  

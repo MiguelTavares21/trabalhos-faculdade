@@ -1,0 +1,51 @@
+<div class="product-list-container">
+  <h1>{{ getProductTypeLabel() }}</h1>
+
+  <div class="alerts-container">
+    <app-alerts [alerts]="alerts" (alertClosed)="removeAlert($event)"></app-alerts>
+</div>
+
+  <!-- Barra de busca e botão de adicionar -->
+  <div class="search-and-add">
+    <input
+      type="text"
+      placeholder="Procurar produto..."
+      class="search-bar"
+      [(ngModel)]="searchQuery"
+    />
+    <button class="add-product-button" (click)="openModal()">
+      <img src="add-product-icon.png" alt="Adicionar Produto" />
+    </button>
+  </div>
+
+  <ul *ngIf="!loading && getFilteredProducts().length > 0; else noProducts" class="products-list">
+    <li *ngFor="let product of getFilteredProducts()" class="product-item">
+      <div class="product-details" (click)="openEditModal(product)">
+        <h2 class="product-name">{{ product.name }}</h2>
+        <strong class="product-unity">{{ product.unity }}</strong>
+      </div>
+    </li>
+  </ul>
+
+  <ng-template #noProducts>
+    <p *ngIf="!loading">Nenhum produto encontrado para este tipo.</p>
+    <p *ngIf="loading">Carregando produtos...</p> <!-- Mensagem de carregamento -->
+  </ng-template>
+
+  <!-- Modal de adicionar/editar produto -->
+  <app-product-modal
+    *ngIf="isModalOpen"
+    (onSave)="handleCreateProduct($event)"
+    (onClose)="closeModal()"
+  ></app-product-modal>
+
+  <!-- Modal de editar produto -->
+  <app-product-modal-edit
+    *ngIf="isEditModalOpen"
+    [product]="selectedProduct"
+    (onSave)="handleEditProduct($event)"
+    (onClose)="closeEditModal()"
+    (onDelete)="handleDeleteProduct($event)"
+  >
+  </app-product-modal-edit>
+</div>

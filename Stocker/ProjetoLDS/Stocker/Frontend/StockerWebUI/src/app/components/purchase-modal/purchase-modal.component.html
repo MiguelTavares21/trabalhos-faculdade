@@ -1,0 +1,69 @@
+<div class="modal-overlay" (click)="closeModal()"></div>
+<div class="modal-container">
+  <h2 class="modal-title">REGISTAR COMPRA</h2>
+
+  <form [formGroup]="createProductForm" (ngSubmit)="onSubmit()">
+    <div class="modal-body">
+      <div>
+        <label for="quantity"
+          >QUANTIDADE
+          <span class="info-icon" title="Quantidade de produto que comprou.">
+            <img src="information.png" alt="Informação" />
+          </span>
+        </label>
+        <input
+          id="quantity"
+          type="number"
+          formControlName="quantity"
+          placeholder="Digite a quantidade"
+          step="0.01"
+        />
+        <div
+          *ngIf="
+            createProductForm.get('quantity')?.invalid &&
+            createProductForm.get('quantity')?.touched
+          "
+        >
+          <small class="error"
+            >Quantidade é obrigatória e deve ser maior que 0</small
+          >
+        </div>
+      </div>
+
+      <!-- Campo Quantidade -->
+      <!-- Campo Ponto de Encomenda e Valor Ideal -->
+      <div class="row-fields">
+        <div class="field-group">
+          <label for="price">
+            Preço
+            <span class="info-icon" title="Preço do produto que comprou.">
+              <img src="information.png" alt="Informação" /> </span
+          ></label>
+          <input
+            id="price"
+            type="number"
+            formControlName="price"
+            placeholder="Digite o preço"
+            step="0.01"
+          />
+          <div
+            *ngIf="
+              createProductForm.get('price')?.invalid &&
+              createProductForm.get('price')?.touched
+            "
+          >
+            <small class="error">Preço e deve ser maior que 0</small>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Botões de Ação -->
+    <div class="modal-footer">
+      <button class="btn-save" type="submit">GUARDAR</button>
+      <button class="btn-cancel" type="button" (click)="closeModal()">
+        CANCELAR
+      </button>
+    </div>
+  </form>
+</div>

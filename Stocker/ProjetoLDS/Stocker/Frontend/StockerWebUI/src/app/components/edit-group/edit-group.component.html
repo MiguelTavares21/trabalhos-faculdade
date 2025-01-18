@@ -1,0 +1,18 @@
+<div class="account-container">
+    <app-alerts [alerts]="alerts" (alertClosed)="removeAlert($event)"></app-alerts>
+    <h2>Grupo</h2>
+  
+    <form [formGroup]="editForm" class="form-box">
+      <label for="name">Nome grupo</label>
+      <input type="text" formControlName="name" id="name" required />
+  
+      <label for="description">Descrição</label>
+      <input type="text" formControlName="description" id="description" required />
+
+      <label for="budget">Budget</label>
+      <input type="number" formControlName="budget" id="budget" required />
+      
+      
+      <button type="submit" class="btn-submit" (click)="confirmEditGroup()">Salvar Alterações</button>
+    </form>
+  

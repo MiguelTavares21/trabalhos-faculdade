@@ -1,0 +1,94 @@
+<div class="main-content">
+  <div class="header">
+    <h2>MINHAS RECEITAS</h2>
+    <div class="tooltip-container-add">
+      <img
+        src="add.png"
+        alt="Adicionar"
+        class="add-icon"
+        (click)="openCreatePopup()"
+      />
+      <span class="tooltip-text">Criar receita</span>
+    </div>
+  </div>
+
+  <div class="alerts-container">
+    <app-alerts
+      [alerts]="alerts"
+      (alertClosed)="removeAlert($event)"
+    ></app-alerts>
+  </div>
+
+  <div class="content-container">
+    <div class="recipes-section">
+      <!--<div class="search-filter-container">-->
+      <div class="search-container">
+        <input
+          type="text"
+          placeholder="Pesquisar receita..."
+          [(ngModel)]="searchQuery"
+          (input)="filterRecipes()"
+          class="search-bar"
+        />
+      </div>
+      <!-- <div class="filter-button-container">
+                    <button class="filter-button" (click)="toggleFilter()">Filtros</button>
+                    <div class="filter-dropdown" [class.show]="isFilterOpen">
+                        <label for="ingredientFilter">Filtrar por Ingredientes:</label>
+                        <select id="ingredientFilter" multiple [(ngModel)]="selectedIngredients"
+                            (change)="filterRecipesByIngredients()">
+                            <option *ngFor="let ingredient of ingredients" [value]="ingredient.name">
+                                {{ ingredient.name }}
+                            </option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            -->
+      <div
+        *ngIf="filteredRecipes && filteredRecipes.length > 0"
+        class="recipe-grid"
+      >
+        <div *ngFor="let recipe of filteredRecipes" class="recipe">
+          <div class="card" (click)="openPopup(recipe, isNewRecipe)">
+            <strong class="name">{{ recipe.name }}</strong>
+          </div>
+          <div class="tooltip-container-consume">
+            <img
+              src="recipe.png"
+              alt="Consumir"
+              class="consume-icon"
+              (click)="consumeRecipe(recipe.id)"
+            />
+            <span class="tooltip-text">Consumir receita</span>
+          </div>
+          <div class="tooltip-container-remove">
+            <img
+              src="x.png"
+              alt="Remover"
+              class="remove-icon"
+              (click)="deleteRecipe(recipe.id)"
+            />
+            <span class="tooltip-text">Apagar receita</span>
+          </div>
+        </div>
+      </div>
+
+      <div *ngIf="filteredRecipes.length === 0" class="notFound">
+        <p>Nenhuma receita encontrada</p>
+      </div>
+    </div>
+  </div>
+
+  <app-in-recipe
+    *ngIf="isPopupOpen && selectedRecipe"
+    [recipe]="selectedRecipe"
+    [isNewRecipe]="isNewRecipe"
+    (close)="closePopup()"
+  ></app-in-recipe>
+
+  <app-create-recipe
+    *ngIf="isPopupCreateOpen"
+    (close)="closeCreatePopup($event)"
+  ></app-create-recipe>
+</div>
