@@ -21,9 +21,6 @@ var dbPassword = Environment.GetEnvironmentVariable("DB_PASSWORD") ?? "StockerBD
 // Para desenvolvimento
 var connectionString = $"Data Source={dbHost};Initial Catalog={dbName};User Id={dbUser};Password={dbPassword};TrustServerCertificate=True;";
 
-// Para produção
-// var connectionString = $"Server=tcp:stockerbd.database.windows.net,1433;Initial Catalog=stockerbd;Persist Security Info=False;User ID=bdAdmin;Password=StockerBD!;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
-
 builder.Services.AddControllers();
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlServer(connectionString));
