@@ -2,3 +2,4 @@
 /BackOffice/node_modules
 ./BackOffice/node_modules
 BackOffice/node_modules
+.env
