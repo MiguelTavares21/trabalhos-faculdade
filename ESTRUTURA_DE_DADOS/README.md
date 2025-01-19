@@ -1,18 +1,36 @@
-## Getting Started
+# Estruturas de Dados em Java
 
-Welcome to the VS Code Java world. Here is a guideline to help you get started to write Java code in Visual Studio Code.
+Este projeto contém implementações de diversas estruturas de dados desenvolvidas em Java. O objetivo é demonstrar conceitos fundamentais de estruturas de dados, explorando diferentes abordagens e técnicas de implementação.
 
-## Folder Structure
+## Estruturas de Dados Implementadas
 
-The workspace contains two folders by default, where:
+- **Linked Lists**  
+- **Árvores Binárias**  
+- **Grafos**  
+- **Heaps**  
+- **Queue** 
+ - **Stack**  
 
-- `src`: the folder to maintain sources
-- `lib`: the folder to maintain dependencies
+## Estrutura do Projeto
 
-Meanwhile, the compiled output files will be generated in the `bin` folder by default.
+O projeto está organizado da seguinte forma:
 
-> If you want to customize the folder structure, open `.vscode/settings.json` and update the related settings there.
+- `src`: Contém o código-fonte com as implementações das estruturas de dados.  
+- `lib`: Diretório para dependências externas, caso necessário.  
+- `bin`: Diretório gerado automaticamente para os arquivos compilados.  
 
-## Dependency Management
+> Caso deseje personalizar a estrutura do projeto, você pode editar o arquivo `.vscode/settings.json`.
 
-The `JAVA PROJECTS` view allows you to manage your dependencies. More details can be found [here](https://github.com/microsoft/vscode-java-dependency#manage-dependencies).
+## Como Executar
+
+1. Certifique-se de que você tem o Java Development Kit (JDK) instalado.
+2. Abra este projeto no Visual Studio Code.
+3. Utilize o recurso de execução do **JAVA PROJECTS** na barra lateral para compilar e executar o código.
+
+## Gerenciamento de Dependências
+
+Você pode gerenciar dependências no **JAVA PROJECTS** view do Visual Studio Code. Para mais detalhes sobre como configurar e gerenciar dependências, consulte a [documentação oficial](https://github.com/microsoft/vscode-java-dependency#manage-dependencies).
+
+## Contribuições
+
+Contribuições são bem-vindas! Sinta-se à vontade para abrir uma _issue_ ou enviar um _pull request_ com melhorias ou novas implementações de estruturas de dados.
